@@ -1,0 +1,106 @@
+name: Daily forecast
+
+# Fetch this season's readings from IEM (no key needed), forecast every station, build the
+# site's data files (latest.json, series.json, surface.json, contours.geojson) and the pages,
+# and publish the site to GitHub Pages.
+#
+# If the data is too incomplete (see scripts/run_daily.py), the run fails and publishes nothing,
+# so the previous site stays up. GitHub emails whoever last edited this file when a scheduled
+# run fails.
+#
+# It runs every morning January to June, and whenever the site, the articles or the model change
+# on main. Run it by hand from the Actions tab too; the optional "today" input pretends it is
+# another day (e.g. 2026-03-06 for a dry run of 5 March 2026), and a run with a date set is
+# never published.
+#
+# Publishing is switched on by the repository variable DEPLOY_PAGES=true, which is set when the
+# repo goes public and Pages is enabled (Settings > Pages > Source: GitHub Actions). Until then
+# the build still runs and only the "deploy" job is skipped.
+on:
+  schedule:
+    # 10:30 UTC (5:30 or 6:30 am Eastern) every day from January to June. From June the run
+    # shows the finished season, and from July to December nothing changes, so it is off.
+    - cron: "30 10 * 1-6 *"
+  push:
+    branches: [main]
+    paths:
+      - "site/**"
+      - "content/**"
+      - "src/**"
+      - "data/**"
+      - "scripts/build_site.py"
+      - "scripts/run_daily.py"
+      - "uv.lock"
+      - ".github/workflows/daily.yml"
+  workflow_dispatch:
+    inputs:
+      today:
+        description: "Pretend today is this date (YYYY-MM-DD). Leave empty for the real date. Never published."
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: daily-forecast
+  cancel-in-progress: false
+
+jobs:
+  forecast:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.1.0
+        with:
+          enable-cache: true
+      - name: Install the project (build_site.py needs the markdown package from the dev group)
+        run: uv sync --locked
+      - name: Build the data files
+        shell: bash
+        env:
+          TODAY: ${{ inputs.today }}
+        run: |
+          echo '### Daily forecast' >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          set +e
+          uv run python scripts/run_daily.py --out site/data ${TODAY:+--today "$TODAY"} 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
+          status=${PIPESTATUS[0]}
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          exit $status
+      - name: Keep the data files
+        uses: actions/upload-artifact@v7
+        with:
+          name: site-data
+          path: site/data
+          retention-days: 14
+          if-no-files-found: error
+      - name: Build the pages from the articles
+        run: uv run python scripts/build_site.py
+      - name: Assemble the site (without the page templates)
+        run: |
+          mkdir _site
+          rsync -a --exclude template.html --exclude map-block.html site/ _site/
+          ls -la _site
+      - name: Package the site for GitHub Pages
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+  deploy:
+    # Publish only real runs (not a dry run for a chosen date), and only once the variable is set.
+    needs: forecast
+    if: ${{ vars.DEPLOY_PAGES == 'true' && inputs.today == '' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

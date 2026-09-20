@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Past seasons - The Jones Center at Ichauway Research Labs</title>
+<meta name="description" content="Every finished longleaf pine pollen season since 2001, one map per year, on the same color scale.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&family=Source+Serif+Pro:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.0/dist/maplibre-gl.css" integrity="sha384-uTttxo/aOKbdE5RlD/SPzSDoDmNvGlUYPjONi2MN/b7c9HPSvW07OIuyP7uL6jxK" crossorigin="anonymous">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="logo" href="https://lab.jonesctr.org"><img src="https://lab.jonesctr.org/wp-content/uploads/2021/02/ICHAUWAY_LOGO_Horizontal_Color.svg" alt="The Jones Center at Ichauway"></a>
+  <a class="band" href="https://lab.jonesctr.org/cannon/"><h1>Landscape Ecology</h1><h2>Jeffery B. Cannon</h2></a>
+  <nav>
+    <a href="https://lab.jonesctr.org/cannon/">Home</a>
+    <a href="https://lab.jonesctr.org/cannon/mission/">Mission</a>
+    <a href="https://lab.jonesctr.org/cannon/people/">People</a>
+    <a href="https://lab.jonesctr.org/cannon/research/">Research</a>
+    <a href="https://lab.jonesctr.org/cannon/publications/">Publications</a>
+    <a href="https://lab.jonesctr.org/cannon/resources/">Resources</a>
+    <a href="https://lab.jonesctr.org/cannon/prospective-students/">Prospective Students</a>
+  </nav>
+</header>
+<main>
+<h1 class="title">Past seasons</h1>
+<p class="deck">Pick a year to explore its map: hover over a dot for a chart of that station's heat accumulation and peakpollen prediction, or click it for details. <a href="index.html">Back to the current forecast.</a></p>
+
+<div class="wide" id="year-nav"></div>
+
+<div id="map-block">
+<p class="map-title"><strong class="yr">Forecast</strong><span class="kind"></span></p>
+<p class="map-banner"></p>
+<p class="map-updated"><span class="lbl">Last updated</span><strong class="when">&hellip;</strong></p>
+<p class="map-summary" aria-live="polite">Loading the latest forecast&hellip;</p>
+<div class="map-wrap" role="region" aria-label="Map of predicted peak pollen dates across the longleaf pine range">
+  <div id="map"></div>
+  <button id="locate" type="button" disabled><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="4"/><path d="M8 0.8v3M8 12.2v3M0.8 8h3M12.2 8h3"/></svg><span>Find my location</span></button>
+  <div class="map-msg" hidden></div>
+  <aside id="panel" aria-live="polite" aria-label="Station details"></aside>
+</div>
+<div class="legend">
+  <div class="bar"><div id="legend-bar" class="bar-gradient"></div><div id="legend-ticks" class="ticks"></div></div>
+  <div class="keys">
+    <span id="key-crossed"><span class="dot crossed"></span>already passed its peak</span>
+    <span id="key-forecast"><span class="dot"></span>forecast</span>
+    <span><span class="line-key"></span><span class="line-key faint"></span>lines: each day, heavier every 5 and 15</span>
+  </div>
+</div>
+<p class="map-help">Colors show the predicted date of peak pollen shedding inside the longleaf pine range. Hover over a dot for a chart; click it for the forecast. Click anywhere else in the range to read the date there.</p>
+<noscript><p>This map needs JavaScript to show the forecast.</p></noscript>
+</div>
+
+<div class="wide" id="trend"></div>
+
+<p><a href="methods.html">How the maps are made</a></p>
+</main>
+<footer class="site-footer"><strong>The Jones Center at Ichauway</strong><br>
+3988 Jones Center Drive, Newton, GA 39870 &middot; (229) 734-4706<br>&copy; 2026 The Jones Center at Ichauway</footer>
+<script src="assets/gallery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.0/dist/maplibre-gl.js" integrity="sha384-5+cfbwT0iiub6VsQAdn6yz16nr6sDiQoHx6tm4O8OVYXHYOxcffFmCJBL0dgdvGp" crossorigin="anonymous"></script>
+<script src="assets/map.js"></script>
+<script src="assets/locate.js"></script>
+</body></html>

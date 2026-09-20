@@ -1,0 +1,29 @@
+name: Tests
+
+# Lint and test on every push and pull request, on a clean Linux machine.
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.1.0
+        with:
+          enable-cache: true
+      - name: Install the project and its dev tools
+        run: uv sync --locked
+      - name: Lint
+        run: uv run ruff check src tests scripts
+      - name: Test
+        run: uv run pytest -q

@@ -1,0 +1,22 @@
+<div id="map-block">
+<p class="map-title"><strong class="yr">Forecast</strong><span class="kind"></span></p>
+<p class="map-banner"></p>
+<p class="map-updated"><span class="lbl">Last updated</span><strong class="when">&hellip;</strong></p>
+<p class="map-summary" aria-live="polite">Loading the latest forecast&hellip;</p>
+<div class="map-wrap" role="region" aria-label="Map of predicted peak pollen dates across the longleaf pine range">
+  <div id="map"></div>
+  <button id="locate" type="button" disabled><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="4"/><path d="M8 0.8v3M8 12.2v3M0.8 8h3M12.2 8h3"/></svg><span>Find my location</span></button>
+  <div class="map-msg" hidden></div>
+  <aside id="panel" aria-live="polite" aria-label="Station details"></aside>
+</div>
+<div class="legend">
+  <div class="bar"><div id="legend-bar" class="bar-gradient"></div><div id="legend-ticks" class="ticks"></div></div>
+  <div class="keys">
+    <span id="key-crossed"><span class="dot crossed"></span>already passed its peak</span>
+    <span id="key-forecast"><span class="dot"></span>forecast</span>
+    <span><span class="line-key"></span><span class="line-key faint"></span>lines: each day, heavier every 5 and 15</span>
+  </div>
+</div>
+<p class="map-help">Colors show the predicted date of peak pollen shedding inside the longleaf pine range. Hover over a dot for a chart; click it for the forecast. Click anywhere else in the range to read the date there.</p>
+<noscript><p>This map needs JavaScript to show the forecast.</p></noscript>
+</div>

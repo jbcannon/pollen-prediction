@@ -1,0 +1,27 @@
+name: Keep scheduled runs alive
+
+# GitHub switches off scheduled workflows in a public repository after 60 days without repository
+# activity, and the daily forecast is off from July to December. Once a month this re-enables the
+# daily forecast (and this workflow itself), which restarts the 60-day clock. Nothing else changes.
+# If it ever does get switched off, turn it back on from the Actions tab.
+on:
+  schedule:
+    - cron: "17 12 1 * *"
+  workflow_dispatch:
+
+permissions:
+  actions: write
+
+jobs:
+  keepalive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Re-enable the scheduled workflows
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for wf in daily.yml keepalive.yml; do
+            gh api -X PUT "repos/$GITHUB_REPOSITORY/actions/workflows/$wf/enable"
+            echo "enabled $wf"
+          done

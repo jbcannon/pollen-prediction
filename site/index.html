@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Longleaf pine pollen countdown for the Southeast - The Jones Center at Ichauway Research Labs</title>
+<meta name="description" content="A daily forecast of when longleaf pine pollen shedding will peak, mapped across the Southeast.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&family=Source+Serif+Pro:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.0/dist/maplibre-gl.css" integrity="sha384-uTttxo/aOKbdE5RlD/SPzSDoDmNvGlUYPjONi2MN/b7c9HPSvW07OIuyP7uL6jxK" crossorigin="anonymous">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="logo" href="https://lab.jonesctr.org"><img src="https://lab.jonesctr.org/wp-content/uploads/2021/02/ICHAUWAY_LOGO_Horizontal_Color.svg" alt="The Jones Center at Ichauway"></a>
+  <a class="band" href="https://lab.jonesctr.org/cannon/"><h1>Landscape Ecology</h1><h2>Jeffery B. Cannon</h2></a>
+  <nav>
+    <a href="https://lab.jonesctr.org/cannon/">Home</a>
+    <a href="https://lab.jonesctr.org/cannon/mission/">Mission</a>
+    <a href="https://lab.jonesctr.org/cannon/people/">People</a>
+    <a href="https://lab.jonesctr.org/cannon/research/">Research</a>
+    <a href="https://lab.jonesctr.org/cannon/publications/">Publications</a>
+    <a href="https://lab.jonesctr.org/cannon/resources/">Resources</a>
+    <a href="https://lab.jonesctr.org/cannon/prospective-students/">Prospective Students</a>
+  </nav>
+</header>
+<main>
+<h1 class="title">Longleaf pine pollen countdown for the Southeast</h1>
+<div class="author"><a class="avatar" href="https://lab.jonesctr.org/cannon/people/" aria-label="Jeffery Cannon, on the lab's People page"><img src="img/author.jpg" alt="Portrait of Jeffery Cannon"></a><p class="byline">Jeffery Cannon, Ph.D., <em>Landscape Ecologist</em></p></div>
+
+<p class="deck">Every spring, longleaf pines release their pollen almost on schedule, and the schedule is set by temperature. Here is where the peak pollen season from longleaf pine is expected to occur.</p>
+
+<div id="map-block">
+<p class="map-title"><strong class="yr">Forecast</strong><span class="kind"></span></p>
+<p class="map-banner"></p>
+<p class="map-updated"><span class="lbl">Last updated</span><strong class="when">&hellip;</strong></p>
+<p class="map-summary" aria-live="polite">Loading the latest forecast&hellip;</p>
+<div class="map-wrap" role="region" aria-label="Map of predicted peak pollen dates across the longleaf pine range">
+  <div id="map"></div>
+  <button id="locate" type="button" disabled><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="4"/><path d="M8 0.8v3M8 12.2v3M0.8 8h3M12.2 8h3"/></svg><span>Find my location</span></button>
+  <div class="map-msg" hidden></div>
+  <aside id="panel" aria-live="polite" aria-label="Station details"></aside>
+</div>
+<div class="legend">
+  <div class="bar"><div id="legend-bar" class="bar-gradient"></div><div id="legend-ticks" class="ticks"></div></div>
+  <div class="keys">
+    <span id="key-crossed"><span class="dot crossed"></span>already passed its peak</span>
+    <span id="key-forecast"><span class="dot"></span>forecast</span>
+    <span><span class="line-key"></span><span class="line-key faint"></span>lines: each day, heavier every 5 and 15</span>
+  </div>
+</div>
+<p class="map-help">Colors show the predicted date of peak pollen shedding inside the longleaf pine range. Hover over a dot for a chart; click it for the forecast. Click anywhere else in the range to read the date there.</p>
+<noscript><p>This map needs JavaScript to show the forecast.</p></noscript>
+</div>
+
+<div class="stats wide">
+<p class="stats-label">How do we know?</p>
+<div class="stat"><i>Method</i><b>1973</b><span>Boyer discovered the formula for peak pollen, worked out with Scotch tape and a microscope.</span></div>
+<div class="stat"><i>Data</i><b>270+</b><span>airport weather stations feed the map, and it is refreshed every morning during the season.</span></div>
+<div class="stat"><i>Accuracy</i><b>9 in 10</b><span>forecasts made in the last ten days land within three days of the day Boyer’s heat threshold is reached.</span></div>
+</div>
+
+<div class="wide past-seasons" id="past-seasons"></div>
+
+<h2 id="pine-pollen-shedding">Pine pollen shedding</h2>
+<p><strong>Each spring I battle with allergies.</strong> It starts with itchy, watery eyes, progresses into a runny nose, and culminates in wall-shaking sneezes. I realize we are in the midst of allergy season when I find that my metallic blue SUV has been dusted with a powdery-yellow film of pine pollen. Pine pollen is a weak allergen for most people (the grains are large and low in protein), so I can’t blame it for my sneezing, although a few people do react to it<sup><a href="#ref-1">1</a></sup>. But I can blame the pines for sullying my car—usually only a day or two after giving it a wash.</p>
+<p>Although allergy season surprises me each year, the timing of pollen shedding in pines is remarkably predictable. In 1973, USDA Forest Service scientist, Bill Boyer, discovered a way to successfully predict peak pine pollen shedding within just a day or two using only air temperature records and some Scotch® tape.</p>
+<p>Boyer worked for the USDA Forest Service – <a href="https://www.fs.usda.gov/research/srs">Southern Research Station</a> in rural Brewton, Alabama. For decades, he conducted painstaking work to study the reproductive patterns of longleaf pine. He was interested in the longleaf pine ecosystem because it once stretched over 90 million acres in the southeastern U.S., but due to unsustainable logging and land use changes throughout the 19<sup>th</sup> and 20<sup>th</sup> centuries, the ecosystem was reduced to <a href="https://books.google.com/books?id=-MN5MO16ECYC">only 5% of its historic range</a><sup><a href="#ref-2">2</a></sup>. Boyer wanted to learn more about reproduction in longleaf pine to help conservationists understand how to reestablish and manage the species, and eventually help it recover.</p>
+<h2 id="boyers-pollen-experiment">Boyer’s pollen experiment</h2>
+<p>For 10 consecutive years (1957 – 1966), Boyer set out tiny pollen traps that allowed him to carefully track pollen shedding in the pines surrounding his office building in the months before and after peak pollen season<sup><a href="#ref-3">3</a></sup>. <a href="https://academic.oup.com/forestscience/article-abstract/4/1/94/4564858">The traps</a> were nothing more than a glass microscope slide wrapped with bit of Scotch® tape—sticky side out<sup><a href="#ref-4">4</a></sup>. The traps were laid out to capture a sample of the day’s airborne pollen. Boyer replaced them every 2-3 days. Using a microscope, he meticulously counted the density of pollen grains on each slide allowing him to track how much pollen was shed on different days each spring.</p>
+<p><img alt="Black-and-white photograph of hands preparing a pollen-trapping slide: a small metal holder with four round openings, with a roll of tape at the left edge." src="img/grano-slide.jpg"></p>
+<p class="caption">Figure 1. Polyester tape applied to a microscope slide similar to the one Boyer adopted for studying longleaf pine pollen grains. <a href="https://academic.oup.com/forestscience/article-abstract/4/1/94/4564858">Grano (1958) Forest Science 4(1) 94-95</a></p>
+<p>Boyer knew that many biological processes depend on environmental conditions, so it was logical to study the role of temperature in pollen shedding. Pines have small, flower-like structures known as catkins that are responsible for producing pollen. Boyer hypothesized that catkins grow and develop rapidly on warm days, but their development could be stifled by cool temperatures. When examining his ten years of pollen and temperature records, he made an important discovery.</p>
+<p><img alt="Close-up of a longleaf pine shoot tip: a pale, bristly bud sits above a cluster of brown, maturing pollen catkins, surrounded by long green needles." src="img/pine-catkins.jpg"></p>
+<p class="caption">Figure 2. Maturing pine catkins of a longleaf pine. Photo Credit: <a href="https://www.flickr.com/photos/83833206@N00/42094013401/">John Winder</a>, <a href="https://creativecommons.org/licenses/by-nc-nd/2.0/">CC BY-NC-ND 2.0</a>, Flickr</p>
+<p>Boyer found that for longleaf pine, catkin development advanced only when temperatures climbed above 50 °F. For each hour that temperatures were above 50 °F, the development of the catkins would slowly advance, ratcheting them closer and closer to maturity.</p>
+<p>Boyer used a measure called a <em>heat sum</em> to predict the exact day the catkins would mature and release pollen. For every hour the air temperature stayed above 50 °F, Boyer would add up the number of <em>degree-hours</em> over 50 °F. For example, if temperatures were 60 °F for 1 hour (50 °F + 10 °F), then the total heat sum would increase by 10 degree-hours. If the temperature averaged 70 °F over the next hour (50 °F + 20 °F), the heat sum would increase by another 20 degree-hours. (Boyer worked from hourly temperature readings; the map estimates the same thing from each day’s high and low, as described in <a href="#how-the-forecast-is-made">How the forecast is made</a>.) In the chart for any station (hover over or click a dot on the map above), the red line tracks the slow accumulation of the heat sum for this year. As the year progresses, the actual heat sum requirement steadily decreases (blue line). By the time the accumulated heat sum exceeds the required threshold, longleaf pine catkins have reached maturity and the pollen is ready to shed.</p>
+<p><img alt="Scatter plot of the recorded day of peak pollen shed against the expected day, both from about day 50 to day 120. The points fall almost exactly on a straight 1:1 line. Filled circles (data in the original analysis, r² = 0.998) and open squares (data not in the original analysis, r² = 0.968), including sites labeled N. Ala. and N.C., sit close to the line." src="img/pollen-shed-prediction.jpg"></p>
+<p class="caption">Figure 3. Data from Boyer’s <a href="https://doi.org/10.2307/1934351">original 1973 article</a> shows a close match between when the day of the year he expected peak pollen shed, and the actual day of the year it occurred. <a href="https://doi.org/10.2307/1934351">Boyer (1973) Ecology 54 (2) 420-426.</a></p>
+<p>Watching pine trees shed their pollen is fascinating. Once a tree canopy is filled with ripened catkins, even a slight breeze can trigger the pollen to release. As the branches gently jostle, a yellow cloud billows forth, rolling slowly from the needles before the yellow haze disappears into the wind. Whole stands of pine may erupt their pollen during the same gust of wind.</p>
+<p>Without clocks and calendars, many plants rely on environmental cues for reproductive events. Successful reproduction is more likely when pollen release happens while female cones are most receptive. So, it should not be surprising that pollen release is so well-timed to weather events.</p>
+<h2 id="boyers-legacy">Boyer’s legacy</h2>
+<p><strong>Boyer’s research laid the foundation for much of the modern-day research on longleaf pine reproduction.</strong> In addition to meticulous pollen counts, Boyer initiated a <a href="https://research.fs.usda.gov/treesearch/972">long-term survey of pine cone</a> production across the Southeast in 1958<sup><a href="#ref-5">5</a></sup>. Using only binoculars, he selected a group of trees in several areas throughout the region, and counted each cone produced to learn more about the drivers of reproductive success. These cone surveys are continued by his successors at the Southern Research Station, and they continue to lead to discoveries in pine reproduction to this day<sup><a href="#ref-6">6</a>–<a href="#ref-8">8</a></sup>.</p>
+<p>Today, what started as Boyer’s curiosity has become an invaluable record, now more than six decades long, of longleaf pine cone production across the southeastern U.S. In 2024, our research team used these data to answer a perplexing question about longleaf pine cones. Cone production in some pines is extremely variable. This is a challenge because to naturally regenerate the species, forest managers need to anticipate favorable cone production to effectively schedule prescribed burns that help improve germination. Using the cone surveys initiated by Boyer, we discovered that hurricanes were a big driver of cone production. By combining cone counts by Boyer, weather data, and hurricane tracks, we found that precipitation from hurricanes can <a href="https://nph.onlinelibrary.wiley.com/doi/10.1111/nph.19381">boost pine cone production</a> for about 2 years<sup><a href="#ref-8">8</a></sup>. Hurricanes are so infrequent that such a pattern is difficult to detect without long-term data. The findings suggest that even though it may be difficult to spot, hurricanes play a pivotal role in the biology and ecology of some coastal tree species.</p>
+<p>Boyer’s foresight and long-term view of research went beyond pine reproduction and pollen shedding. His work has fostered many insights into the biology of longleaf pine. His steadfast and diligent efforts continue to advance knowledge of pollen production and the conservation and management of an iconic species of the southeastern U.S. And that contribution is nothing to sneeze at.</p>
+<hr class="back-matter">
+<p class="back-label">Behind the map</p>
+
+<h2 id="how-the-forecast-is-made">How the forecast is made</h2>
+<p><strong>The prediction follows Boyer's method and needs nothing but air temperature.</strong> Each day, the map collects the daily high and low temperature from about 270 airport weather stations across the Southeast. For each station I add up the "heat" that has built up since January 1: the degrees above 50 °F, weighted by how long each day stayed warm, which the day's high and low are enough to estimate. Boyer found that the heat needed for peak pollen shedding shrinks as spring goes on. It starts near 19,000 degree-hours on January 1 and drops by about 89 with each passing day. The predicted peak is the day a station's running total crosses that line.</p>
+<p>If a station has not crossed yet, I forecast the rest of the spring by replaying the weather from each of the previous ten years, day by day, on top of the heat that has already accumulated this year. Each past year gives one predicted date, and the range on the map is the middle half of those dates. It narrows as the peak gets closer, because the more of the season has already happened, the less is left to guess.</p>
+<p>Between stations, the map fills in the gaps by fitting a smooth surface through the stations' predicted dates and drawing it over the longleaf range. Every part of the range is within about 60 miles (100 km) of a station, but places far from one are the least certain.</p>
+<h2 id="how-accurate-is-the-forecast">How accurate is the forecast?</h2>
+<p><strong>Short answer: in the last ten days before the peak, about nine in ten forecasts land within three days of the true date.</strong> A month or more ahead, the typical miss is about four days.</p>
+<p>To find out, I replayed 16 past springs (2011–2026) at weather stations across the Southeast. For each station and each spring, I made a forecast on several dates using only the weather up to that day plus the previous ten years of weather, and then compared it with the day the heat sum actually reached the threshold. Here is how close the predicted date was, depending on how far ahead of the peak the forecast was made:</p>
+<div class="acc" role="group" aria-label="Share of forecasts that landed within 3 and within 5 days of the true date, by how far ahead they were made">
+<div class="acc-key"><span><i class="k3"></i>within 3 days</span><span><i class="k5"></i>within 5 days</span></div>
+<div class="acc-row"><div class="acc-lab">Within a week of the peak<small>typical miss: 1 day</small></div><div class="acc-bar"><i class="b5" style="width:99%"></i><i class="b3" style="width:94%"></i></div><div class="acc-val"><b>94%</b><small>99% within 5 days</small></div></div>
+<div class="acc-row"><div class="acc-lab">1–2 weeks before<small>typical miss: 2 days</small></div><div class="acc-bar"><i class="b5" style="width:89%"></i><i class="b3" style="width:75%"></i></div><div class="acc-val"><b>75%</b><small>89% within 5 days</small></div></div>
+<div class="acc-row"><div class="acc-lab">2–4 weeks before<small>typical miss: 3 days</small></div><div class="acc-bar"><i class="b5" style="width:74%"></i><i class="b3" style="width:52%"></i></div><div class="acc-val"><b>52%</b><small>74% within 5 days</small></div></div>
+<div class="acc-row"><div class="acc-lab">4–6 weeks before<small>typical miss: 4 days</small></div><div class="acc-bar"><i class="b5" style="width:66%"></i><i class="b3" style="width:46%"></i></div><div class="acc-val"><b>46%</b><small>66% within 5 days</small></div></div>
+</div>
+
+<p>Further out the forecast tends to run a day or two late, because warm late winters (2012 and 2023, for example) bring the peak earlier than an average spring would suggest. Two cautions: this tests when the temperature threshold is reached, not actual pollen counts, and local conditions will always add some scatter.</p>
+<p>For the data, the math and the tests behind these numbers, see <a href="methods.html">how the pollen countdown map is made</a>.</p>
+<h2 id="references">References</h2>
+<ol>
+<li><a id="ref-1"></a>Gastaminza, G., Lombardero, M., Bernaola, G., Antepara, I., Muñoz, D., Gamboa, P. M., Audicana, M. T., Marcos, C., &amp; Ansotegui, I. J. (2009). Allergenicity and cross-reactivity of pine pollen. <em>Clinical &amp; Experimental Allergy</em>, 39(9), 1438–1446. <a href="https://doi.org/10.1111/j.1365-2222.2009.03308.x">https://doi.org/10.1111/j.1365-2222.2009.03308.x</a></li>
+<li><a id="ref-2"></a>Noss, R. F., LaRoe III, E. T., &amp; Scott, J. M. (1995). Endangered ecosystems of the United States: A preliminary assessment of loss and degradation. <em>Biological Report - US Department of the Interior, National Biological Service</em>, 28. <a href="https://books.google.com/books?id=-MN5MO16ECYC">Google Books</a></li>
+<li><a id="ref-3"></a>Boyer, W. D. (1973). Air temperature, heat sums, and pollen shedding phenology of longleaf pine. <em>Ecology</em>, 54(2), 420–426. <a href="https://doi.org/10.2307/1934351">https://doi.org/10.2307/1934351</a></li>
+<li><a id="ref-4"></a>Grano, C. X. (1958). Equipment Notes: A Timesaving Slide for Trapping Atmospheric Pollen. <em>Forest Science</em>, 4(1), 94–95. <a href="https://doi.org/10.1093/forestscience/4.1.94">https://doi.org/10.1093/forestscience/4.1.94</a></li>
+<li><a id="ref-5"></a>Boyer, W. D. (1987). Annual and geographic variations in cone production by longleaf pine. In <em>Proceedings of the Fourth Biennial Southern Silvicultural Research Conference: Atlanta, Georgia, November 4-6, 1986</em> (General Technical Report SE-42, pp. 73–76). Southeastern Forest Experiment Station. <a href="https://research.fs.usda.gov/treesearch/972">https://research.fs.usda.gov/treesearch/972</a></li>
+<li><a id="ref-6"></a>Guo, Q., Zarnoch, S. J., Chen, X., &amp; Brockway, D. G. (2016). Life cycle and masting of a recovering keystone indicator species under climate fluctuation. <em>Ecosystem Health and Sustainability</em>, 2(6), e01226. <a href="https://doi.org/10.1002/ehs2.1226">https://doi.org/10.1002/ehs2.1226</a></li>
+<li><a id="ref-7"></a>Chen, X., &amp; Willis, J. L. (2023). Individuals’ Behaviors of Cone Production in Longleaf Pine Trees. <em>Forests</em>, 14(3), 494. <a href="https://doi.org/10.3390/f14030494">https://doi.org/10.3390/f14030494</a></li>
+<li><a id="ref-8"></a>Cannon, J. B., Rutledge, B. T., Puhlick, J. J., Willis, J. L., &amp; Brockway, D. G. (2024). Tropical cyclone winds and precipitation stimulate cone production in the masting species longleaf pine (<em>Pinus palustris</em>). <em>New Phytologist</em>, 242(1), 289–301. <a href="https://doi.org/10.1111/nph.19381">https://doi.org/10.1111/nph.19381</a></li>
+</ol>
+</main>
+<footer class="site-footer"><strong>The Jones Center at Ichauway</strong><br>
+3988 Jones Center Drive, Newton, GA 39870 &middot; (229) 734-4706<br>&copy; 2026 The Jones Center at Ichauway</footer>
+<script src="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.0/dist/maplibre-gl.js" integrity="sha384-5+cfbwT0iiub6VsQAdn6yz16nr6sDiQoHx6tm4O8OVYXHYOxcffFmCJBL0dgdvGp" crossorigin="anonymous"></script>
+<script src="assets/map.js"></script>
+<script src="assets/locate.js"></script><script src="assets/carousel.js"></script>
+
+</body></html>

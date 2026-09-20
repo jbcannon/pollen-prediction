@@ -1,0 +1,35 @@
+[project]
+name = "pollen"
+version = "0.1.0"
+description = "Southeast US longleaf pine pollen peak prediction (Boyer heat-sum model)"
+authors = [
+    { name = "Jeffery B Cannon", email = "39226472+jbcannon@users.noreply.github.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "contourpy>=1.4.0",
+    "numpy>=2.5.3",
+    "pandas>=3.0.6",
+    "requests>=2.34.2",
+    "scipy>=1.18.1",
+]
+
+[project.scripts]
+pollen = "pollen:main"
+
+[build-system]
+requires = ["uv_build>=0.12.17,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+gallery = [
+    "matplotlib>=3.11.2",
+]
+dev = [
+    "markdown>=3.10.3",
+    "pytest>=9.1.1",
+    "ruff>=0.16.8",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

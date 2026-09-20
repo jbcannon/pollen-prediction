@@ -1,0 +1,33 @@
+# Old code/data (had plaintext credentials). Gone now; this keeps a restored copy from being committed.
+archive/
+
+# Secrets / local config
+.env
+.env.*
+*.secret
+secrets.*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+*.egg-info/
+
+# Screenshots from scripts/check_site.py
+figures/
+
+# Logs, editor, OS
+*.log
+.Rhistory
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Built by the daily job (uploaded as a workflow artifact, not committed)
+site/data/
+
