@@ -50,9 +50,9 @@
     const byMedian = rows.slice().sort((a, b) => yday(a.median) - yday(b.median));
     const first = byMedian[0], last = byMedian[byMedian.length - 1];
     el.innerHTML = `<h2>Every season at a glance</h2>` +
-      `<p class="trend-note">Each bar runs from the earliest to the latest peak across the longleaf range that year, and the dot is the middle station. Click a year to see its map. ` +
+      `<p class="trend-note">Each bar runs from the earliest to the latest peak across the longleaf pine range that year, and the dot is the middle station. Click a year to see its map. ` +
       `The earliest spring was <strong>${first.year}</strong> (middle peak ${fmt(first.median)}) and the latest was <strong>${last.year}</strong> (${fmt(last.median)}).</p>` +
-      `<svg class="trend" viewBox="0 0 ${w} ${h}" role="img" aria-label="Peak dates across the longleaf range for each season since ${rows[0].year}">${parts.join("")}</svg>`;
+      `<svg class="trend" viewBox="0 0 ${w} ${h}" role="img" aria-label="Peak dates across the longleaf pine range for each season since ${rows[0].year}">${parts.join("")}</svg>`;
   }
 
   window.POLLEN_READY = (async () => {

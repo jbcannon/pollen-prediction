@@ -7,13 +7,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&family=Source+Serif+Pro:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.0/dist/maplibre-gl.css" integrity="sha384-uTttxo/aOKbdE5RlD/SPzSDoDmNvGlUYPjONi2MN/b7c9HPSvW07OIuyP7uL6jxK" crossorigin="anonymous">
+<script>document.documentElement.classList.add("js")</script>
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 <header class="site-header">
   <a class="logo" href="https://lab.jonesctr.org"><img src="https://lab.jonesctr.org/wp-content/uploads/2021/02/ICHAUWAY_LOGO_Horizontal_Color.svg" alt="The Jones Center at Ichauway"></a>
   <a class="band" href="https://lab.jonesctr.org/cannon/"><h1>Landscape Ecology</h1><h2>Jeffery B. Cannon</h2></a>
-  <nav>
+  <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span></button>
+  <nav id="site-nav">
     <a href="https://lab.jonesctr.org/cannon/">Home</a>
     <a href="https://lab.jonesctr.org/cannon/mission/">Mission</a>
     <a href="https://lab.jonesctr.org/cannon/people/">People</a>
@@ -58,6 +60,7 @@
 </main>
 <footer class="site-footer"><strong>The Jones Center at Ichauway</strong><br>
 3988 Jones Center Drive, Newton, GA 39870 &middot; (229) 734-4706<br>&copy; 2026 The Jones Center at Ichauway</footer>
+<script src="assets/site.js"></script>
 <script src="assets/gallery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.0/dist/maplibre-gl.js" integrity="sha384-5+cfbwT0iiub6VsQAdn6yz16nr6sDiQoHx6tm4O8OVYXHYOxcffFmCJBL0dgdvGp" crossorigin="anonymous"></script>
 <script src="assets/map.js"></script>

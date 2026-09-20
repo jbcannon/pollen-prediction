@@ -35,6 +35,16 @@
   const tOf = (yday) => (yday - state.lo) / (state.hi - state.lo);
 
   // ---------- wording ----------
+  // Airport names in the source data are mostly in capitals ("PUNTA GORDA", "WARNER ROBINS AFB"). Names already in mixed case are left alone.
+  const KEEP_UPPER = new Set(["AFB", "NAS", "NAF", "AAF", "AFS", "ANG", "ANGB", "MCAS", "MCALF", "NALF", "NOLF", "NASA", "USAF", "AWOS", "ASOS", "II", "III", "IV"]);
+  function niceName(name) {
+    if (!name || /[a-z]/.test(name)) return name;
+    return name.replace(/[A-Z0-9][A-Z0-9']*/g, (w) => {
+      if (KEEP_UPPER.has(w) || w.length === 1) return w;
+      if (/^MC[A-Z]{3,}/.test(w)) return "Mc" + w[2] + w.slice(3).toLowerCase();
+      return w[0] + w.slice(1).toLowerCase().replace(/'([a-z])/g, (_, c) => "'" + c.toUpperCase());
+    });
+  }
   function rangeText(rec) {
     const a = rec.forecast_earliest ? fmtDate(rec.forecast_earliest) : "?";
     const b = rec.forecast_latest ? fmtDate(rec.forecast_latest) : "after 31 May";
@@ -99,7 +109,7 @@
       const x0 = X(d0 - 0.5), x1 = Math.max(X(d1 + 0.5), x0 + 3);
       parts.unshift(`<rect x="${x0.toFixed(1)}" y="${m.t}" width="${(x1 - x0).toFixed(1)}" height="${h - m.t - m.b}" fill="${GOLD}" fill-opacity="0.3"/>`);
     }
-    const label = `Chart of accumulated heat against the Boyer threshold for ${rec.name}: ${headline(rec)}`;
+    const label = `Chart of accumulated heat against the Boyer threshold for ${niceName(rec.name)}: ${headline(rec)}`;
     return `<svg class="chart" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" role="img" aria-label="${esc(label)}">${parts.join("")}</svg>`;
   }
 
@@ -107,7 +117,7 @@
   function popupHTML(rec) {
     const s = state.series && state.series.stations[rec.id];
     const chart = s ? chartSVG(rec, s, false) : '<div class="pp-note">loading chart…</div>';
-    return `<div class="pp"><strong>${esc(rec.name)}</strong>, ${esc(rec.state)}<div class="pp-line">${esc(headline(rec))}</div>${chart}<div class="pp-note">Click for details</div></div>`;
+    return `<div class="pp"><strong>${esc(niceName(rec.name))}</strong>, ${esc(rec.state)}<div class="pp-line">${esc(headline(rec))}</div>${chart}<div class="pp-note">Click for details</div></div>`;
   }
   function panelHTML(rec) {
     const L = state.latest, s = state.series && state.series.stations[rec.id];
@@ -120,7 +130,7 @@
       detail = `Accumulated heat reached the Boyer threshold on ${fmtLong(rec.crossing_date)}. ${state.latest.mode === "archive" ? "Pollen shedding peaked around then." : "Pollen shedding is expected to peak around then."}`;
     } else if (rec.status === "forecast") {
       detail = L.mode === "outlook"
-        ? `Most likely ${fmtDate(rec.forecast_median)}. No ${L.season} weather has been recorded yet, so this outlook rests only on the last ten springs (${L.method.analog_years}). The yellow band is the predicted range, and it narrows once the heat starts to add up in January. The green band is the middle half of ${rec.n_scenarios} scenarios, one per recent spring.`
+        ? `Most likely ${fmtDate(rec.forecast_median)}. No weather from ${L.season} has been recorded yet, so this outlook rests only on the last ten springs (${L.method.analog_years}). The yellow band is the predicted range, and it narrows once the heat starts to add up in January. The green band is the middle half of ${rec.n_scenarios} scenarios, one per recent spring.`
         : `Most likely ${fmtDate(rec.forecast_median)}. The yellow band is the predicted range. The green band is the middle half of ${rec.n_scenarios} scenarios: each replays the weather from one of the recent springs (${L.method.analog_years}) on top of this year so far.`;
       if (rec.n_not_crossed) detail += ` In ${rec.n_not_crossed} of them the threshold is not reached by 31 May.`;
     } else {
@@ -130,9 +140,9 @@
     const key = s ? `<div class="chart-key">${s.cum.length ? `<span><i style="background:${RED}"></i>heat so far</span>` : ""}<span><i style="background:${BLUE}"></i>Boyer threshold</span>${s.band ? '<span><i class="band"></i>range of scenarios</span>' : ""}${rec.status === "forecast" ? '<span><i class="pk"></i>predicted peak range</span>' : ""}</div>` : "";
     // The scrolling lives in an inner wrapper: a scrollable panel laid directly over the map made some
     // browsers drop the map behind it on small screens.
-    return `<button class="close" aria-label="Close">&times;</button><div class="panel-body"><h3>${esc(rec.name)}, ${esc(rec.state)}</h3>` +
-      `<p class="sub">${rec.in_range ? "Inside" : "Near"} the longleaf range · ${L.mode === "outlook" ? `${L.season} outlook` : L.mode === "archive" ? `${L.season} final results` : `as of ${fmtDate(L.as_of)}`}</p>` +
-      `<p class="headline">${esc(headline(rec))}</p><p class="detail">${esc(detail)}</p>${chart}${key}<p class="facts">${facts.map(esc).join(" ")}</p></div>`;
+    return `<button class="close" aria-label="Close">&times;</button><div class="panel-body"><h3>${esc(niceName(rec.name))}, ${esc(rec.state)}</h3>` +
+      `<p class="sub">${rec.in_range ? "Inside" : "Near"} the longleaf pine range · ${L.mode === "outlook" ? `${L.season} outlook` : L.mode === "archive" ? `${L.season} final results` : `as of ${fmtDate(L.as_of)}`}</p>` +
+      `<p class="headline">${esc(headline(rec))}</p><p class="detail">${esc(detail).replace(/\n/g, "<br>")}</p>${chart}${key}<p class="facts">${facts.map(esc).join(" ")}</p></div>`;
   }
   function openPanel(id) {
     const rec = state.byId[id];
@@ -200,15 +210,15 @@
     const seasonOver = L.as_of.slice(5) === "05-31";
     let html;
     if (!dated.length) html = "No forecasts are available right now.";
-    else if (L.mode === "archive") html = `In <strong>${L.season}</strong>, across the longleaf range, peak shedding came between <strong>${fmtDate(dated[0])}</strong> and <strong>${fmtDate(dated[dated.length - 1])}</strong>, from the ${dated.length} weather stations in the range that reported that spring.`;
-    else if (L.mode === "outlook") html = `Across the longleaf range, the peak is expected to arrive between <strong>${fmtDate(dated[0])}</strong> and <strong>${fmtDate(dated[dated.length - 1])}</strong>.`;
-    else if (seasonOver && crossed === inr.length) html = `The <strong>${L.season}</strong> season is complete. Across the longleaf range, peak shedding came between <strong>${fmtDate(dated[0])}</strong> and <strong>${fmtDate(dated[dated.length - 1])}</strong>.`;
-    else if (fc.length) html = `As of <strong>${fmtDate(L.as_of)}</strong>, <strong>${crossed} of ${inr.length}</strong> weather stations in the longleaf range have passed their peak. The rest are forecast between <strong>${fmtDate(fc[0])}</strong> and <strong>${fmtDate(fc[fc.length - 1])}</strong>.`;
-    else html = `As of <strong>${fmtDate(L.as_of)}</strong>, all ${inr.length} weather stations in the longleaf range have passed their peak.`;
+    else if (L.mode === "archive") html = `In <strong>${L.season}</strong>, across the longleaf pine range, peak shedding came between <strong>${fmtDate(dated[0])}</strong> and <strong>${fmtDate(dated[dated.length - 1])}</strong>, from the ${dated.length} weather stations in the range that reported that spring.`;
+    else if (L.mode === "outlook") html = `Across the longleaf pine range, the peak is expected to arrive between <strong>${fmtDate(dated[0])}</strong> and <strong>${fmtDate(dated[dated.length - 1])}</strong>.`;
+    else if (seasonOver && crossed === inr.length) html = `The <strong>${L.season}</strong> season is complete. Across the longleaf pine range, peak shedding came between <strong>${fmtDate(dated[0])}</strong> and <strong>${fmtDate(dated[dated.length - 1])}</strong>.`;
+    else if (fc.length) html = `As of <strong>${fmtDate(L.as_of)}</strong>, <strong>${crossed} of ${inr.length}</strong> weather stations in the longleaf pine range have passed their peak. The rest are forecast between <strong>${fmtDate(fc[0])}</strong> and <strong>${fmtDate(fc[fc.length - 1])}</strong>.`;
+    else html = `As of <strong>${fmtDate(L.as_of)}</strong>, all ${inr.length} weather stations in the longleaf pine range have passed their peak.`;
     if (dated.length > 1) {   // how far the peak travels across the range, from the earliest to the latest station
       const first = inr.find((s) => s.peak_date === dated[0]), last = inr.find((s) => s.peak_date === dated[dated.length - 1]);
       const weeks = Math.round((Date.parse(dated[dated.length - 1]) - Date.parse(dated[0])) / (7 * DAY_MS));
-      if (weeks >= 2) html += ` The peak sweeps across the range over about <strong>${weeks} weeks</strong>, from ${esc(first.name)}, ${esc(first.state)} to ${esc(last.name)}, ${esc(last.state)}.`;
+      if (weeks >= 2) html += ` The peak pollen season sweeps across the range over about <strong>${weeks} weeks</strong>, from ${esc(niceName(first.name))}, ${esc(first.state)} to ${esc(niceName(last.name))}, ${esc(last.state)}.`;
     }
     $(".map-summary").innerHTML = html;
     $(".map-updated .when").textContent = fmtStamp(L.generated_at);
@@ -228,7 +238,7 @@
       if (help) help.textContent = "Colors show the day peak pollen shedding came at each station, inside the longleaf pine range. Hover over a dot for a chart; click it for details. Click anywhere else in the range to read the date there.";
       for (const id of ["#key-crossed", "#key-forecast"]) { const k = $(id); if (k) k.style.display = "none"; }
     } else if (L.mode === "outlook") {
-      b.innerHTML = `<strong>Preseason outlook, not yet a live forecast.</strong> No ${L.season} weather has been recorded yet, so these dates come only from the last ten springs and are typically off by about a week. They sharpen once daily updates begin in January.`;
+      b.innerHTML = `<strong>Preseason outlook, not yet a live forecast.</strong><br>No ${L.season} weather has been recorded yet, so these dates come only from the last ten springs and are typically off by about a week. They sharpen once daily updates begin in January.`;
       b.style.display = "block";
       const done = $("#key-crossed");
       if (done) done.style.display = "none";   // nothing has passed its peak yet
@@ -257,10 +267,17 @@
     state.map = map;
     window.pollenMap = map;   // handy for testing in the browser console
     window.pollenState = state;
-    state.helpers = { fmtDate, isoOfYday, headline };   // used by locate.js
+    state.helpers = { fmtDate, isoOfYday, headline, niceName };   // used by locate.js
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-left");
-    map.addControl(new maplibregl.AttributionControl({ compact: true,
-      customAttribution: 'Temperatures: <a href="https://mesonet.agron.iastate.edu/" target="_blank" rel="noopener">Iowa Environmental Mesonet</a> · range map: E. L. Little Jr.' }));
+    const attribution = new maplibregl.AttributionControl({ compact: true,
+      customAttribution: 'Temperatures: <a href="https://mesonet.agron.iastate.edu/" target="_blank" rel="noopener">Iowa Environmental Mesonet</a> · range map: E. L. Little Jr.' });
+    map.addControl(attribution);
+    // The credits stay one click away behind the (i) button instead of open over the map on first load.
+    const collapseCredits = () => {
+      const el = map.getContainer().querySelector(".maplibregl-ctrl-attrib");
+      if (el) { el.classList.remove("maplibregl-compact-show"); el.removeAttribute("open"); }
+    };
+    collapseCredits(); map.once("load", collapseCredits); map.once("idle", collapseCredits);
     map.on("error", (e) => console.warn("map error", e && e.error && e.error.message));
     map.once("load", () => {
       const before = (map.getStyle().layers.find((l) => l.type === "symbol") || {}).id;   // keep place names above our layers

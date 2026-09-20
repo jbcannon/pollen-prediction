@@ -16,7 +16,7 @@
     const cards = seasons.map((s, i) => {
       const end = i === 0 || i === n - 1;
       return `<a class="past-card${end ? " end" : ""}" style="--i:${i}" data-i="${i}" href="gallery.html#${s.year}" aria-label="${s.year} season: peak from ${fmt(s.first)} to ${fmt(s.last)}">` +
-        `<img src="${thumb(s.year)}" alt="Map of peak pollen dates across the longleaf range in ${s.year}" width="480" height="338" ${end ? "" : 'loading="lazy"'}>` +
+        `<img src="${thumb(s.year)}" alt="Map of peak pollen dates across the longleaf pine range in ${s.year}" width="480" height="338" ${end ? "" : 'loading="lazy"'}>` +
         `<span class="yr">${s.year}</span></a>`;
     }).join("");
     host.innerHTML =
@@ -37,7 +37,7 @@
       current = i;
       const s = seasons[i];
       stageImg.src = thumb(s.year);
-      stageImg.alt = `Map of peak pollen dates across the longleaf range in ${s.year}`;
+      stageImg.alt = `Map of peak pollen dates across the longleaf pine range in ${s.year}`;
       stageLink.href = openLink.href = `gallery.html#${s.year}`;
       host.querySelector(".stage-year").textContent = `${s.year} season`;
       host.querySelector(".stage-mid").innerHTML = `Half of the stations had peaked by <strong>${fmt(s.median)}</strong>`;

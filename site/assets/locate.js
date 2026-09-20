@@ -18,7 +18,7 @@
     if (!S) return null;
     const g = S.grid, fr = (g.lat0 - lat) / g.step, fc = (lon - g.lon0) / g.step;
     const at = (r, c) => (r < 0 || c < 0 || r >= g.n_lat || c >= g.n_lon ? null : S.values[r * g.n_lon + c]);
-    if (at(Math.round(fr), Math.round(fc)) === null) return null;   // outside the longleaf range
+    if (at(Math.round(fr), Math.round(fc)) === null) return null;   // outside the longleaf pine range
     const r0 = Math.floor(fr), c0 = Math.floor(fc), dr = fr - r0, dc = fc - c0;
     let sw = 0, sv = 0;
     for (const [r, c, w] of [[r0, c0, (1 - dr) * (1 - dc)], [r0, c0 + 1, (1 - dr) * dc], [r0 + 1, c0, dr * (1 - dc)], [r0 + 1, c0 + 1, dr * dc]]) {
@@ -57,7 +57,7 @@
       note = `Read from the smoothed map between stations${mae ? ` (typically off by about ${Math.max(1, Math.round(mae))} days)` : ""}.`;
     }
     // a station hundreds of miles away says nothing about here (visitors from outside the region)
-    const nearHTML = near && (day !== null || near.d <= 100) ? `<p class="me-near">Closest station: <strong>${esc(near.rec.name)}, ${esc(near.rec.state)}</strong> (${Math.max(1, Math.round(near.d))} mi away). ${esc(headline(near.rec))}.</p>` : "";
+    const nearHTML = near && (day !== null || near.d <= 100) ? `<p class="me-near">Closest station: <strong>${esc(st.helpers.niceName(near.rec.name))}, ${esc(near.rec.state)}</strong> (${Math.max(1, Math.round(near.d))} mi away). ${esc(headline(near.rec))}.</p>` : "";
     return `<div class="me"><p class="me-head">${esc(head)}</p><p class="me-date">${esc(date)}</p>${nearHTML}<p class="me-note">${esc(note)}</p></div>`;
   }
 

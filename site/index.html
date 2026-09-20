@@ -7,13 +7,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&family=Source+Serif+Pro:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.0/dist/maplibre-gl.css" integrity="sha384-uTttxo/aOKbdE5RlD/SPzSDoDmNvGlUYPjONi2MN/b7c9HPSvW07OIuyP7uL6jxK" crossorigin="anonymous">
+<script>document.documentElement.classList.add("js")</script>
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 <header class="site-header">
   <a class="logo" href="https://lab.jonesctr.org"><img src="https://lab.jonesctr.org/wp-content/uploads/2021/02/ICHAUWAY_LOGO_Horizontal_Color.svg" alt="The Jones Center at Ichauway"></a>
   <a class="band" href="https://lab.jonesctr.org/cannon/"><h1>Landscape Ecology</h1><h2>Jeffery B. Cannon</h2></a>
-  <nav>
+  <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span></button>
+  <nav id="site-nav">
     <a href="https://lab.jonesctr.org/cannon/">Home</a>
     <a href="https://lab.jonesctr.org/cannon/mission/">Mission</a>
     <a href="https://lab.jonesctr.org/cannon/people/">People</a>
@@ -27,7 +29,7 @@
 <h1 class="title">Longleaf pine pollen countdown for the Southeast</h1>
 <div class="author"><a class="avatar" href="https://lab.jonesctr.org/cannon/people/" aria-label="Jeffery Cannon, on the lab's People page"><img src="img/author.jpg" alt="Portrait of Jeffery Cannon"></a><p class="byline">Jeffery Cannon, Ph.D., <em>Landscape Ecologist</em></p></div>
 
-<p class="deck">Every spring, longleaf pines release their pollen almost on schedule, and the schedule is set by temperature. Here is where the peak pollen season from longleaf pine is expected to occur.</p>
+<p class="deck">Every spring, longleaf pines release their pollen on a schedule that is dependent on temperature and time, and very predictable. The map below shows when the peak pollen season from longleaf pine is expected to occur.</p>
 
 <div id="map-block">
 <p class="map-title"><strong class="yr">Forecast</strong><span class="kind"></span></p>
@@ -55,8 +57,8 @@
 <div class="stats wide">
 <p class="stats-label">How do we know?</p>
 <div class="stat"><i>Method</i><b>1973</b><span>Boyer discovered the formula for peak pollen, worked out with Scotch tape and a microscope.</span></div>
-<div class="stat"><i>Data</i><b>270+</b><span>airport weather stations feed the map, and it is refreshed every morning during the season.</span></div>
-<div class="stat"><i>Accuracy</i><b>9 in 10</b><span>forecasts made in the last ten days land within three days of the day Boyer’s heat threshold is reached.</span></div>
+<div class="stat"><i>Data</i><b>270+</b><span>weather stations feed the map, and it is refreshed every morning during the spring.</span></div>
+<div class="stat"><i>Accuracy</i><b>9 in 10</b><span>forecasts made within ten days of peak pollen land within three days of the day Boyer’s heat threshold is reached.</span></div>
 </div>
 
 <div class="wide past-seasons" id="past-seasons"></div>
@@ -86,7 +88,7 @@
 <p class="back-label">Behind the map</p>
 
 <h2 id="methodology">Methodology</h2>
-<p><strong>How the forecast is made, and how well it works, has its own page.</strong> In the last ten days before the peak, about nine in ten forecasts land within three days of the true date; a month or more ahead, the typical miss is about four days. The <a href="methods.html">methodology page</a> covers the data, the math, the map, and the replays of past springs behind those numbers.</p>
+<p>In the last ten days before the peak, about nine in ten forecasts land within three days of Boyer’s crossover date; a month or more ahead, the typical miss is about four days. The <a href="methods.html">methodology page</a> covers the data, the math, the map, and the replays of past springs behind those numbers.</p>
 <h2 id="references">References</h2>
 <ol>
 <li><a id="ref-1"></a>Gastaminza, G., Lombardero, M., Bernaola, G., Antepara, I., Muñoz, D., Gamboa, P. M., Audicana, M. T., Marcos, C., &amp; Ansotegui, I. J. (2009). Allergenicity and cross-reactivity of pine pollen. <em>Clinical &amp; Experimental Allergy</em>, 39(9), 1438–1446. <a href="https://doi.org/10.1111/j.1365-2222.2009.03308.x">https://doi.org/10.1111/j.1365-2222.2009.03308.x</a></li>
@@ -101,6 +103,7 @@
 </main>
 <footer class="site-footer"><strong>The Jones Center at Ichauway</strong><br>
 3988 Jones Center Drive, Newton, GA 39870 &middot; (229) 734-4706<br>&copy; 2026 The Jones Center at Ichauway</footer>
+<script src="assets/site.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.0/dist/maplibre-gl.js" integrity="sha384-5+cfbwT0iiub6VsQAdn6yz16nr6sDiQoHx6tm4O8OVYXHYOxcffFmCJBL0dgdvGp" crossorigin="anonymous"></script>
 <script src="assets/map.js"></script>
 <script src="assets/locate.js"></script><script src="assets/carousel.js"></script>

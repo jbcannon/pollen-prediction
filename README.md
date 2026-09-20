@@ -19,7 +19,7 @@ The page is a static site (`site/`) rebuilt every morning by a GitHub Action and
 3. **Forecast.** For a station that has not crossed yet, each of the last 10 springs is replayed from tomorrow
    onward on top of this year's total. Each spring gives one crossing date; the middle half of those dates is
    the forecast range.
-4. **Map.** The stations' dates are smoothed into a surface over the longleaf range, with contour lines.
+4. **Map.** The stations' dates are smoothed into a surface over the longleaf pine range, with contour lines.
 
 ## What's here
 
@@ -31,7 +31,7 @@ The page is a static site (`site/`) rebuilt every morning by a GitHub Action and
 | `scripts/` | `run_daily.py` (the daily job), `build_gallery.py` (finished seasons and thumbnails), `dev.py` (live preview; `preview.bat` on Windows), `build_site.py`, `build_history.py` (yearly), `check_site.py` (browser test) |
 | `data/history/` | Daily temperatures for 2001 onward at the 272 stations, and the station list |
 | `data/basemap/` | US state outlines, for the gallery thumbnails |
-| `data/range/`, `data/surface/` | The longleaf range outline (Little) and the map mask built from it |
+| `data/range/`, `data/surface/` | The longleaf pine range outline (Little) and the map mask built from it |
 | `docs/data-format.md` | The JSON files the page reads |
 | `notes/` | To-do list, article follow-ups, the accuracy (hindcast) research and the tools behind it, and the station survey |
 | `tests/` | Unit tests plus a few real-data regression checks |

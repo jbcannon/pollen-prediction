@@ -2,15 +2,15 @@
 
 <div class="author"><a class="avatar" href="https://lab.jonesctr.org/cannon/people/" aria-label="Jeffery Cannon, on the lab's People page"><img src="img/author.jpg" alt="Portrait of Jeffery Cannon"></a><p class="byline">Jeffery Cannon, Ph.D., <em>Landscape Ecologist</em></p></div>
 
-<p class="deck">Every spring, longleaf pines release their pollen almost on schedule, and the schedule is set by temperature. Here is where the peak pollen season from longleaf pine is expected to occur.</p>
+<p class="deck">Every spring, longleaf pines release their pollen on a schedule that is dependent on temperature and time, and very predictable. The map below shows when the peak pollen season from longleaf pine is expected to occur.</p>
 
 <!-- MAP -->
 
 <div class="stats wide">
 <p class="stats-label">How do we know?</p>
 <div class="stat"><i>Method</i><b>1973</b><span>Boyer discovered the formula for peak pollen, worked out with Scotch tape and a microscope.</span></div>
-<div class="stat"><i>Data</i><b>270+</b><span>airport weather stations feed the map, and it is refreshed every morning during the season.</span></div>
-<div class="stat"><i>Accuracy</i><b>9 in 10</b><span>forecasts made in the last ten days land within three days of the day Boyer’s heat threshold is reached.</span></div>
+<div class="stat"><i>Data</i><b>270+</b><span>weather stations feed the map, and it is refreshed every morning during the spring.</span></div>
+<div class="stat"><i>Accuracy</i><b>9 in 10</b><span>forecasts made within ten days of peak pollen land within three days of the day Boyer’s heat threshold is reached.</span></div>
 </div>
 
 <div class="wide past-seasons" id="past-seasons"></div>
@@ -62,7 +62,7 @@ Boyer’s foresight and long-term view of research went beyond pine reproduction
 
 ## Methodology
 
-**How the forecast is made, and how well it works, has its own page.** In the last ten days before the peak, about nine in ten forecasts land within three days of the true date; a month or more ahead, the typical miss is about four days. The [methodology page](methods.html) covers the data, the math, the map, and the replays of past springs behind those numbers.
+In the last ten days before the peak, about nine in ten forecasts land within three days of Boyer’s crossover date; a month or more ahead, the typical miss is about four days. The [methodology page](methods.html) covers the data, the math, the map, and the replays of past springs behind those numbers.
 
 ## References
 

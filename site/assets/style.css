@@ -17,6 +17,7 @@ html { scroll-padding-top:88px; }   /* anchors (references, #YYYY) land below th
 .site-header a.band { flex:none; padding:13px 30px 12px 26px; color:#fff; text-decoration:none; }
 .site-header a.band h1 { margin:0; font:700 22px/1.2 "Nunito Sans",sans-serif; color:#fff; }
 .site-header a.band h2 { margin:2px 0 0; font:400 15px/1.2 "Nunito Sans",sans-serif; color:#fff; }
+.site-header .nav-toggle { display:none; }
 .site-header nav { flex:1; display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; row-gap:4px; padding:6px 36px 6px 10px; }
 .site-header nav a { font:700 16px "Nunito Sans",sans-serif; color:#fff; text-decoration:none; margin:0 9px; padding:3px 0; border-bottom:2px solid transparent; }
 .site-header nav a:hover, .site-header nav a:focus-visible { border-bottom-color:#fff; }
@@ -135,6 +136,8 @@ ol li { margin-bottom:9px; }
   .site-header nav a { font-size:15px; margin:0 6px; }
 }
 
+p.page-note { margin-top:38px; font-size:14px; line-height:1.45; color:#6b6b66; }
+
 /* ---- the map ---- */
 #map-block { margin:8px 0 10px; font-family:"Nunito Sans",sans-serif; }
 .map-title { display:flex; align-items:center; flex-wrap:wrap; gap:6px 14px; margin:0 0 10px; }
@@ -222,8 +225,20 @@ ol li { margin-bottom:9px; }
   .site-header a.band { padding:8px 14px; flex:1 1 0; min-width:0; }
   .site-header a.band h1 { font-size:18px; }
   .site-header a.band h2 { font-size:13px; }
-  .site-header nav { flex:1 0 100%; flex-wrap:nowrap; justify-content:flex-start; overflow-x:auto; padding:4px 14px 6px; }   /* one scrolling row */
-  .site-header nav a { white-space:nowrap; margin:0 14px 0 0; font-size:14.5px; }
+  .site-header .nav-toggle { display:flex; align-items:center; justify-content:center; flex:none; width:52px; background:none; border:0; cursor:pointer; }
+  .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after { display:block; width:22px; height:2px; background:#fff; border-radius:1px; transition:transform .18s, background .18s; }
+  .nav-toggle span { position:relative; }
+  .nav-toggle span::before, .nav-toggle span::after { content:""; position:absolute; left:0; }
+  .nav-toggle span::before { top:-7px; }
+  .nav-toggle span::after { top:7px; }
+  .site-header.open .nav-toggle span { background:transparent; }
+  .site-header.open .nav-toggle span::before { top:0; transform:rotate(45deg); }
+  .site-header.open .nav-toggle span::after { top:0; transform:rotate(-45deg); }
+  .site-header nav { flex:1 0 100%; flex-direction:column; align-items:stretch; flex-wrap:nowrap; justify-content:flex-start; padding:0 0 6px; border-top:1px solid rgba(255,255,255,.25); }
+  .js .site-header nav { display:none; }
+  .js .site-header.open nav { display:flex; }
+  .site-header nav a { margin:0; padding:12px 18px; font-size:16px; border-bottom:1px solid rgba(255,255,255,.16); }
+  .site-header nav a:hover, .site-header nav a:focus-visible { background:rgba(255,255,255,.12); }
   h1.title { font-size:27px; }
   main p.deck { font-size:18px; line-height:1.35; }
   /* on a phone the map comes first; the live summary sits underneath it */

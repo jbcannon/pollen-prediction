@@ -8,7 +8,7 @@ Run this whenever an article or the template changes, and commit the result; the
 
     uv run python scripts/build_site.py
 
-Also copies the articles' images into site/img/ and a lighter copy of the longleaf range outline to
+Also copies the articles' images into site/img/ and a lighter copy of the longleaf pine range outline to
 site/assets/range.geojson. To see the result while you edit, run scripts/dev.py: it serves the site (the
 map needs a web server, not a double-click) and calls this for you on every save.
 """
