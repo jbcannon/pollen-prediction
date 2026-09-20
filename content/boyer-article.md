@@ -21,6 +21,8 @@
 
 Watching pine trees shed their pollen is fascinating. Once a tree canopy is filled with ripened catkins (the pollen-producing structures), even a slight breeze can trigger the pollen to release. As the branches gently jostle, a yellow cloud billows forth, rolling slowly from the needles before the yellow haze disappears into the wind. Whole stands of pine may erupt their pollen during the same gust of wind.
 
+Without clocks and calendars, many plants rely on environmental cues for reproductive events. Successful reproduction is more likely when pollen release happens while female cones are most receptive. So, it should not be surprising that pollen release is so well-timed to weather events.
+
 Although allergy season surprises me each year, the timing of pollen shedding in pines is remarkably predictable. In 1973, USDA Forest Service scientist, Bill Boyer, discovered a way to successfully predict peak pine pollen shedding within just a day or two using only air temperature records and some Scotch® tape.
 
 Boyer worked for the USDA Forest Service – [Southern Research Station](https://www.fs.usda.gov/research/srs) in rural Brewton, Alabama. For decades, he conducted painstaking work to study the reproductive patterns of longleaf pine. He was interested in the longleaf pine ecosystem because it once stretched over 90 million acres in the southeastern U.S., but due to unsustainable logging and land use changes throughout the 19<sup>th</sup> and 20<sup>th</sup> centuries, the ecosystem was reduced to [only 5% of its historic range](https://books.google.com/books?id=-MN5MO16ECYC)<sup>[2](#ref-2)</sup>. Boyer wanted to learn more about reproduction in longleaf pine to help conservationists understand how to reestablish and manage the species, and eventually help it recover.
@@ -41,13 +43,11 @@ Boyer knew that many biological processes depend on environmental conditions, so
 
 Boyer found that for longleaf pine, catkin development advanced only when temperatures climbed above 50 °F. For each hour that temperatures were above 50 °F, the development of the catkins would slowly advance, ratcheting them closer and closer to maturity.
 
-Boyer used a measure called a *heat sum* to predict the exact day the catkins would mature and release pollen. For every hour the air temperature stayed above 50 °F, Boyer would add up the number of *degree-hours* over 50 °F. For example, if temperatures were 60 °F for 1 hour (50 °F + 10 °F), then the total heat sum would increase by 10 degree-hours. If the temperature averaged 70 °F over the next hour (50 °F + 20 °F), the heat sum would increase by another 20 degree-hours. (Boyer worked from hourly temperature readings; the map estimates the same thing from each day’s high and low, as described in [How the forecast is made](#how-the-forecast-is-made).) In the chart for any station (hover over or click a dot on the map above), the red line tracks the slow accumulation of the heat sum for this year. As the year progresses, the actual heat sum requirement steadily decreases (blue line). By the time the accumulated heat sum exceeds the required threshold, longleaf pine catkins have reached maturity and the pollen is ready to shed.
+Boyer used a measure called a *heat sum* to predict the exact day the catkins would mature and release pollen. For every hour the air temperature stayed above 50 °F, Boyer would add up the number of *degree-hours* over 50 °F. For example, if temperatures were 60 °F for 1 hour (50 °F + 10 °F), then the total heat sum would increase by 10 degree-hours. If the temperature averaged 70 °F over the next hour (50 °F + 20 °F), the heat sum would increase by another 20 degree-hours. (Boyer worked from hourly temperature readings; the map estimates the same thing from each day’s high and low, as described in [the methodology page](methods.html#from-temperatures-to-heat).) In the chart for any station (hover over or click a dot on the map above), the red line tracks the slow accumulation of the heat sum for this year. As the year progresses, the actual heat sum requirement steadily decreases (blue line). By the time the accumulated heat sum exceeds the required threshold, longleaf pine catkins have reached maturity and the pollen is ready to shed.
 
 ![Scatter plot of the recorded day of peak pollen shed against the expected day, both from about day 50 to day 120. The points fall almost exactly on a straight 1:1 line. Filled circles (data in the original analysis, r² = 0.998) and open squares (data not in the original analysis, r² = 0.968), including sites labeled N. Ala. and N.C., sit close to the line.](img/pollen-shed-prediction.jpg)
 
 *Figure 3. Data from Boyer’s [original 1973 article](https://doi.org/10.2307/1934351) shows a close match between when the day of the year he expected peak pollen shed, and the actual day of the year it occurred. [Boyer (1973) Ecology 54 (2) 420-426.](https://doi.org/10.2307/1934351)*
-
-Without clocks and calendars, many plants rely on environmental cues for reproductive events. Successful reproduction is more likely when pollen release happens while female cones are most receptive. So, it should not be surprising that pollen release is so well-timed to weather events.
 
 ## Boyer’s legacy
 
@@ -60,31 +60,9 @@ Boyer’s foresight and long-term view of research went beyond pine reproduction
 <hr class="back-matter">
 <p class="back-label">Behind the map</p>
 
-## How the forecast is made
+## Methodology
 
-**The prediction follows Boyer's method and needs nothing but air temperature.** Each day, the map collects the daily high and low temperature from about 270 airport weather stations across the Southeast. For each station I add up the "heat" that has built up since January 1: the degrees above 50 °F, weighted by how long each day stayed warm, which the day's high and low are enough to estimate. Boyer found that the heat needed for peak pollen shedding shrinks as spring goes on. It starts near 19,000 degree-hours on January 1 and drops by about 89 with each passing day. The predicted peak is the day a station's running total crosses that line.
-
-If a station has not crossed yet, I forecast the rest of the spring by replaying the weather from each of the previous ten years, day by day, on top of the heat that has already accumulated this year. Each past year gives one predicted date, and the range on the map is the middle half of those dates. It narrows as the peak gets closer, because the more of the season has already happened, the less is left to guess.
-
-Between stations, the map fills in the gaps by fitting a smooth surface through the stations' predicted dates and drawing it over the longleaf range. Every part of the range is within about 60 miles (100 km) of a station, but places far from one are the least certain.
-
-## How accurate is the forecast?
-
-**Short answer: in the last ten days before the peak, about nine in ten forecasts land within three days of the true date.** A month or more ahead, the typical miss is about four days.
-
-To find out, I replayed 16 past springs (2011–2026) at weather stations across the Southeast. For each station and each spring, I made a forecast on several dates using only the weather up to that day plus the previous ten years of weather, and then compared it with the day the heat sum actually reached the threshold. Here is how close the predicted date was, depending on how far ahead of the peak the forecast was made:
-
-<div class="acc" role="group" aria-label="Share of forecasts that landed within 3 and within 5 days of the true date, by how far ahead they were made">
-<div class="acc-key"><span><i class="k3"></i>within 3 days</span><span><i class="k5"></i>within 5 days</span></div>
-<div class="acc-row"><div class="acc-lab">Within a week of the peak<small>typical miss: 1 day</small></div><div class="acc-bar"><i class="b5" style="width:99%"></i><i class="b3" style="width:94%"></i></div><div class="acc-val"><b>94%</b><small>99% within 5 days</small></div></div>
-<div class="acc-row"><div class="acc-lab">1–2 weeks before<small>typical miss: 2 days</small></div><div class="acc-bar"><i class="b5" style="width:89%"></i><i class="b3" style="width:75%"></i></div><div class="acc-val"><b>75%</b><small>89% within 5 days</small></div></div>
-<div class="acc-row"><div class="acc-lab">2–4 weeks before<small>typical miss: 3 days</small></div><div class="acc-bar"><i class="b5" style="width:74%"></i><i class="b3" style="width:52%"></i></div><div class="acc-val"><b>52%</b><small>74% within 5 days</small></div></div>
-<div class="acc-row"><div class="acc-lab">4–6 weeks before<small>typical miss: 4 days</small></div><div class="acc-bar"><i class="b5" style="width:66%"></i><i class="b3" style="width:46%"></i></div><div class="acc-val"><b>46%</b><small>66% within 5 days</small></div></div>
-</div>
-
-Further out the forecast tends to run a day or two late, because warm late winters (2012 and 2023, for example) bring the peak earlier than an average spring would suggest. Two cautions: this tests when the temperature threshold is reached, not actual pollen counts, and local conditions will always add some scatter.
-
-For the data, the math and the tests behind these numbers, see [how the pollen countdown map is made](methods.html).
+**How the forecast is made, and how well it works, has its own page.** In the last ten days before the peak, about nine in ten forecasts land within three days of the true date; a month or more ahead, the typical miss is about four days. The [methodology page](methods.html) covers the data, the math, the map, and the replays of past springs behind those numbers.
 
 ## References
 

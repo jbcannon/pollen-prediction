@@ -1,5 +1,11 @@
 # Longleaf pine pollen countdown (Southeast US)
 
+[![Tests](https://github.com/jbcannon/pollen-prediction/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/jbcannon/pollen-prediction/actions/workflows/tests.yml)
+[![Daily forecast](https://github.com/jbcannon/pollen-prediction/actions/workflows/daily.yml/badge.svg?branch=main)](https://github.com/jbcannon/pollen-prediction/actions/workflows/daily.yml)
+[![Yearly history and gallery](https://github.com/jbcannon/pollen-prediction/actions/workflows/extend-history.yml/badge.svg)](https://github.com/jbcannon/pollen-prediction/actions/workflows/extend-history.yml)
+
+**Live site: <https://jbcannon.github.io/pollen-prediction/>**
+
 A daily forecast of when longleaf pine (*Pinus palustris*) pollen shedding will peak, mapped across the
 Southeast. It uses Boyer's (1973) heat-sum model and daily temperatures from airport weather stations.
 The page is a static site (`site/`) rebuilt every morning by a GitHub Action and served with GitHub Pages.

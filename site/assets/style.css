@@ -127,6 +127,14 @@ ol li { margin-bottom:9px; }
   font:400 14px/1.5 "Nunito Sans",sans-serif; }
 .site-footer strong { font-size:15px; }
 
+@media (min-width:761px) and (max-width:1180px) {   /* keep the links on one row on a narrow laptop window */
+  .site-header a.logo { padding:8px 16px; }
+  .site-header a.logo img { width:146px; }
+  .site-header a.band { padding-right:18px; }
+  .site-header nav { padding-right:20px; }
+  .site-header nav a { font-size:15px; margin:0 6px; }
+}
+
 /* ---- the map ---- */
 #map-block { margin:8px 0 10px; font-family:"Nunito Sans",sans-serif; }
 .map-title { display:flex; align-items:center; flex-wrap:wrap; gap:6px 14px; margin:0 0 10px; }

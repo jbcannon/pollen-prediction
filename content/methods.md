@@ -1,12 +1,14 @@
-# How the pollen countdown map is made
+# Methodology: how the map is made and how well it works
 
 <p class="byline">Drafted by Claude Sonnet 5 (Anthropic) from the project's code and results, and reviewed by the author.</p>
 
-<p class="deck">A closer look at where the temperatures come from, how they become a forecast, and how well it holds up when we replay the past. <a href="index.html">Back to the map.</a></p>
+<p class="deck">Where the temperatures come from, how they become a forecast, and how well it holds up when we replay the past. <a href="index.html">Back to the map.</a></p>
 
 ## The short version
 
 **Each morning, the map gets updated.** It looks at the temperature data each weather station has collected since January 1, and asks how soon that total heat accumulation reaches the level Boyer found is needed for peak pollen shedding. Stations that have already reached it get a date. For the rest, the map replays the weather from recent springs to see how soon it could get there. The [original article](index.html) explains Boyer’s idea. This page explains what the computer does with it.
+
+**How accurate is it? In the last ten days before the peak, about nine in ten forecasts land within three days of the true date.** A month or more ahead, the typical miss is about four days. The section on replaying the past below shows the details.
 
 ## Where the temperatures come from
 
@@ -40,11 +42,19 @@ Why ten? Springs have been getting warmer, and a forecast built from all the yea
 
 ## From stations to a map
 
-**Between stations, the map draws a smooth surface through their predicted dates.** The surface is a thin-plate spline, which behaves like a flexible sheet pinned to the stations. How stiff to make it was settled by hiding one station at a time and checking how well the rest predicted it. In a test on March 5, that error averaged about two days. The surface is drawn only inside the longleaf range, on a grid of roughly 5 km cells, and contour lines are drawn for every day, with heavier lines every 5 and 15 days.
+**Between stations, the map draws a smooth surface through their predicted dates.** The surface is a thin-plate spline, which behaves like a flexible sheet pinned to the stations. How stiff to make it was settled by hiding one station at a time and checking how well the rest predicted it. In a test on March 5, that error averaged about two days. The surface is drawn only inside the longleaf range, on a grid of roughly 5 km cells, and contour lines are drawn for every day, with heavier lines every 5 and 15 days. Every part of the range is within about 60 miles (100 km) of a station, but places far from one are the least certain.
 
-## Replaying the past
+## How accurate is the forecast?
 
-**To find out how good the forecast is, I ran it on previous years as if they were happening now.** For each of 16 springs (2011–2026), I made forecasts on five dates from February 1 to April 1, at all the stations that had not yet reached their threshold. Each forecast saw only the weather up to its date, plus the ten springs before it, so nothing from the future leaked in. Then I compared each forecast with the day the station really crossed. That gives 15,616 forecasts.
+**To find out how good the forecast is, I ran it on previous years as if they were happening now.** For each of 16 springs (2011–2026), I made forecasts on five dates from February 1 to April 1, at all the stations that had not yet reached their threshold. Each forecast saw only the weather up to its date, plus the ten springs before it, so nothing from the future leaked in. Then I compared each forecast with the day the station really crossed. That gives 15,616 forecasts. Here is how close the predicted date was, depending on how far ahead of the peak the forecast was made:
+
+<div class="acc" role="group" aria-label="Share of forecasts that landed within 3 and within 5 days of the true date, by how far ahead they were made">
+<div class="acc-key"><span><i class="k3"></i>within 3 days</span><span><i class="k5"></i>within 5 days</span></div>
+<div class="acc-row"><div class="acc-lab">Within a week of the peak<small>typical miss: 1 day</small></div><div class="acc-bar"><i class="b5" style="width:99%"></i><i class="b3" style="width:94%"></i></div><div class="acc-val"><b>94%</b><small>99% within 5 days</small></div></div>
+<div class="acc-row"><div class="acc-lab">1–2 weeks before<small>typical miss: 2 days</small></div><div class="acc-bar"><i class="b5" style="width:89%"></i><i class="b3" style="width:75%"></i></div><div class="acc-val"><b>75%</b><small>89% within 5 days</small></div></div>
+<div class="acc-row"><div class="acc-lab">2–4 weeks before<small>typical miss: 3 days</small></div><div class="acc-bar"><i class="b5" style="width:74%"></i><i class="b3" style="width:52%"></i></div><div class="acc-val"><b>52%</b><small>74% within 5 days</small></div></div>
+<div class="acc-row"><div class="acc-lab">4–6 weeks before<small>typical miss: 4 days</small></div><div class="acc-bar"><i class="b5" style="width:66%"></i><i class="b3" style="width:46%"></i></div><div class="acc-val"><b>46%</b><small>66% within 5 days</small></div></div>
+</div>
 
 ![Four small charts for the Albany, Georgia airport station, one for each of the springs 2013, 2016, 2019, and 2025. Each shows forecasts made on Feb 1, Feb 15, Mar 1, and Mar 15. The predicted date is a dot with a green bar for the middle-half range, and a dashed red line marks the real crossing date. In 2013 and 2025 the forecasts start within about a week of the real date and settle on it. In 2016 they start about a week late, and in 2019 the first forecast is about nine days late. All close in as the date approaches.](img/methods-replay-example.png)
 
@@ -54,7 +64,7 @@ Why ten? Springs have been getting warmer, and a forecast built from all the yea
 
 *Figure 4. Forecast error by how far ahead the forecast was made. The box is the middle half of the forecasts, the line inside it is the median, and the whiskers reach the 5th and 95th percentiles. The dashed red line is a perfect forecast.*
 
-**Forecasts get sharper as the peak nears.** Within a week of the peak, the typical miss is 1 day and 94% of forecasts land within 3 days. At 1–2 weeks it is 2 days and 75%. At 2–4 weeks it is 3 days and 52%, and at 4–6 weeks 4 days and 46%. The green middle-half range does about what it promises: it holds the true date roughly half the time or better at every lead time (67%, 55%, 51% and 52%).
+**Forecasts get sharper as the peak nears.** Two replays show it (Figure 3), and the spread of the errors shows it across all of them (Figure 4). The green middle-half range does about what it promises: it holds the true date roughly half the time or better at every lead time (67%, 55%, 51% and 52%).
 
 The forecasts also tend to run a day or two late. Most of that comes from a few warm late winters (2012, 2017, 2018 and 2023), when the peak came 3 to 7 days earlier than the recent past suggested. Without those four springs the average lateness at 1–4 weeks ahead falls from 1.8 to 0.7 days.
 
@@ -64,6 +74,7 @@ The forecasts also tend to run a day or two late. Most of that comes from a few 
 
 ## Data and credits
 
+- Code and data: [github.com/jbcannon/pollen-prediction](https://github.com/jbcannon/pollen-prediction), MIT licensed.
 - Temperatures: daily station summaries from the [Iowa Environmental Mesonet](https://mesonet.agron.iastate.edu/) (Iowa State University), which archives NWS and FAA airport observations.
 - Range map: E. L. Little Jr., *Atlas of United States Trees*, public domain, mirrored at [wpetry/USTreeAtlas](https://github.com/wpetry/USTreeAtlas). State outlines in Figure 1 from the open [PublicaMundi MappingAPI](https://github.com/PublicaMundi/MappingAPI) data.
 - Basemap: [OpenFreeMap](https://openfreemap.org/) with OpenStreetMap data, drawn with [MapLibre GL JS](https://maplibre.org/).

@@ -6,18 +6,11 @@ The build is done: model, daily data run, interactive map, article, tests, and t
 
 ## To go live
 
-- [ ] **GitHub Pages deploy.** Add a deploy job to `daily.yml`: assemble `_site` (index.html, assets, img, data,
-      .nojekyll), upload with `upload-pages-artifact`, publish with `deploy-pages` (needs `pages: write` and
-      `id-token: write`). Also redeploy on pushes to `main` that touch `site/` or `content/`. Enable Pages with
-      `gh api -X POST repos/jbcannon/pollen-prediction/pages -f build_type=workflow` (needs a public repo, or a paid plan).
-- [ ] **Keep-alive.** GitHub disables scheduled workflows in a public repo after 60 days without repo activity, and July
-      to December has none. Add a monthly job that runs `gh workflow enable daily.yml` (`actions: write`), or run the daily
-      job weekly in the off-season.
-- [ ] **Before going public:** review `notes/` (decide what stays public); rescan the full git history for the old
-      Weather Underground key and SFTP login (the fingerprints are in the assistant's project memory, not here); consider
-      squashing history to one clean commit with a local backup bundle (**ask first**); make the repo public; enable Pages.
-- [ ] **Review the gallery** (carousel on the front page, `gallery.html#YYYY`): built and previewed with 2001-2008; check all 26
-      seasons once `scripts/build_gallery.py` finishes, then commit `site/seasons/` and `site/gallery/`.
+The site is live at https://jbcannon.github.io/pollen-prediction/ (public repo, MIT license, Pages deploy from `daily.yml`, keep-alive
+job, history squashed to one commit on 2026-09-20; a backup bundle of the old history is outside the repo, next to it).
+
+- [ ] **Watch the first few daily runs** in January (`daily.yml` publishes every morning; a failed run emails whoever last
+      edited it, and the README badges show the state).
 - [ ] Link from `lab.jonesctr.org/pollen-shedding-countdown-for-longleaf-pine/` to the new site (a link or button; the
       WordPress site is separate and cannot embed it). The old page itself stays as it is.
 

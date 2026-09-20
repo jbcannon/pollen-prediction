@@ -8,4 +8,4 @@
 
 <div class="wide" id="trend"></div>
 
-[How the maps are made](methods.html)
+[Methodology: how the maps are made](methods.html)
