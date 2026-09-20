@@ -1,26 +1,22 @@
-# Methodology: how the map is made and how well it works
+**Each morning, the map gets updated with yesterday’s temperature highs and lows.** It looks at the temperature data each weather station has collected since January 1, and asks how soon that total heat accumulation reaches the level Boyer found is needed for peak pollen shedding. Stations that have already reached it get a date. For the rest, the map replays the weather from recent springs to see how soon it is expected to reach peak pollen shedding based on previous years’ weather data.
 
-<p class="deck">Where the temperatures come from, how they become a forecast, and how well it holds up when we replay the past. <a href="index.html">Back to the map.</a></p>
+**How accurate is it?** In the last ten days before the peak, about nine in ten forecasts land within three days of Boyer’s crossover date; a month or more ahead, the typical miss is about four days. The full methodology covers the data, the math, the map, and the replays of past springs behind those numbers.
 
-## The short version
-
-**Each morning, the map gets updated with yesterday’s temperature highs and lows.** It looks at the temperature data each weather station has collected since January 1, and asks how soon that total heat accumulation reaches the level Boyer found is needed for peak pollen shedding. Stations that have already reached it get a date. For the rest, the map replays the weather from recent springs to see how soon it is expected to reach peak pollen shedding based on previous years’ weather data. The [original article](index.html) explains Boyer’s idea.
-
-**How accurate is it? In the last ten days before the peak, about nine in ten forecasts land within three days of the true date.** A month or more ahead, the typical miss is about four days. The accuracy section below shows the details.
+<!-- MORE -->
 
 ## Where the temperatures come from
 
 **The map uses the daily high and low temperature from airport weather stations retrieved from the [Iowa Environmental Mesonet](https://mesonet.agron.iastate.edu/) at Iowa State University.**
 
-Not every airport station has enough data to use. Of the 642 stations in the Southeast that report to the archive, I kept the ones with at least 15 complete January–May seasons on record since 2001. I also kept only stations within 100 km of the longleaf pine range, so the map has data beyond its edges as well as inside. That leaves 272 stations, 153 of them inside the range (Figures 1 and 2). Every part of the range is within 100 km of one of them, and 84% of it is within 50 km.
+Not every airport station has enough data to use. Of the 642 stations in the Southeast that report to the archive, I kept the ones with at least 15 complete January–May seasons on record since 2001. I also kept only stations within 100 km of the longleaf pine range, so the map has data beyond its edges as well as inside. That leaves 272 stations, 153 of them inside the range (Figures 4 and 5). Every part of the range is within 100 km of one of them, and 84% of it is within 50 km.
 
 ![Map of the southeastern United States with the longleaf pine range shaded green. 153 dark green dots mark stations inside the range, and 119 open dots mark stations outside it but within 100 kilometers. Stations are spread fairly evenly across the range, with fewer along parts of the Gulf coast.](img/methods-stations-map.png)
 
-*Figure 1. The 272 weather stations behind the map. Stations outside the range still help, because the smooth surface between stations is fitted using them, but only the part inside the range is drawn. Range: Little (public domain).*
+*Figure 4. The 272 weather stations behind the map. Stations outside the range still help, because the smooth surface between stations is fitted using them, but only the part inside the range is drawn. Range: Little (public domain).*
 
 ![Two charts. On the left, horizontal bars show how the station list narrows: 642 stations report to the archive, 387 have 15 or more complete seasons, 345 also have a complete 2026 season and recent readings, 272 are within 100 kilometers of the longleaf pine range, and 153 are inside it. On the right, a bar chart shows that stations have between 15 and 26 complete seasons of history, and 97 of them have all 26.](img/methods-station-numbers.png)
 
-*Figure 2. How the station list was chosen (left), and how many springs of history each station has (right). Stations keep different history lengths, and the record grows by one spring each June.*
+*Figure 5. How the station list was chosen (left), and how many springs of history each station has (right). Stations keep different history lengths, and the record grows by one spring each June.*
 
 **Where missing readings were found,** gaps of up to three days are filled in using temperatures between the readings on either side. Longer gaps are filled with the typical heat for that day of the year, and those stations are flagged.
 
@@ -56,13 +52,13 @@ Why ten? Springs have been getting warmer, and a forecast built from all the yea
 
 ![Four small charts for the Albany, Georgia airport station, one for each of the springs 2013, 2016, 2019, and 2025. Each shows forecasts made on Feb 1, Feb 15, Mar 1, and Mar 15. The predicted date is a dot with a green bar for the middle-half range, and a dashed red line marks the real crossing date. In 2013 and 2025 the forecasts start within about a week of the real date and settle on it. In 2016 they start about a week late, and in 2019 the first forecast is about nine days late. All close in as the date approaches.](img/methods-replay-example.png)
 
-*Figure 3. Four replays at the Albany, Georgia airport. Each dot is the forecast made on the date below it, the green bar is the middle-half range, and the dashed red line is the day the station really crossed Boyer’s line. The forecasts wander early on and settle as the date gets closer.*
+*Figure 6. Four replays at the Albany, Georgia airport. Each dot is the forecast made on the date below it, the green bar is the middle-half range, and the dashed red line is the day the station really crossed Boyer’s line. The forecasts wander early on and settle as the date gets closer.*
 
 ![Box plots of the forecast error, in days, for forecasts made within a week of the peak, 1 to 2 weeks before, 2 to 4 weeks before, and 4 to 6 weeks before. Within a week, errors are tight around zero. The boxes widen with lead time, and the median is about one day late from 1 week out onward.](img/methods-forecast-error.png)
 
-*Figure 4. Forecast error by how far ahead the forecast was made. The box is the middle half of the forecasts, the line inside it is the median, and the whiskers reach the 5th and 95th percentiles. The dashed red line is a perfect forecast.*
+*Figure 7. Forecast error by how far ahead the forecast was made. The box is the middle half of the forecasts, the line inside it is the median, and the whiskers reach the 5th and 95th percentiles. The dashed red line is a perfect forecast.*
 
-**Forecasts get sharper as the peak pollen shedding date nears.** Two replays show it (Figure 3), and the spread of the errors shows it across all of them (Figure 4). The green middle-half range does about what it promises: it holds the true date roughly half the time or better at every lead time (67%, 55%, 51% and 52%).
+**Forecasts get sharper as the peak pollen shedding date nears.** Two replays show it (Figure 6), and the spread of the errors shows it across all of them (Figure 7). The green middle-half range does about what it promises: it holds the true date roughly half the time or better at every lead time (67%, 55%, 51% and 52%).
 
 The forecasts also tend to run a day or two late. Most of that comes from a few warm late winters (2012, 2017, 2018 and 2023), when the peak came 3 to 7 days earlier than the recent past suggested. Without those four springs the average lateness at 1–4 weeks ahead falls from 1.8 to 0.7 days.
 
@@ -74,9 +70,9 @@ The replays check the heat sum, not the pollen: the “true” date is the day t
 
 - Code and data: [github.com/jbcannon/pollen-prediction](https://github.com/jbcannon/pollen-prediction), MIT licensed.
 - Temperatures: daily station summaries from the [Iowa Environmental Mesonet](https://mesonet.agron.iastate.edu/) (Iowa State University), which archives NWS and FAA airport observations.
-- Range map: E. L. Little Jr., *Atlas of United States Trees*, public domain, mirrored at [wpetry/USTreeAtlas](https://github.com/wpetry/USTreeAtlas). State outlines in Figure 1 from the open [PublicaMundi MappingAPI](https://github.com/PublicaMundi/MappingAPI) data.
+- Range map: E. L. Little Jr., *Atlas of United States Trees*, public domain, mirrored at [wpetry/USTreeAtlas](https://github.com/wpetry/USTreeAtlas). State outlines in Figure 4 from the open [PublicaMundi MappingAPI](https://github.com/PublicaMundi/MappingAPI) data.
 - Basemap: [OpenFreeMap](https://openfreemap.org/) with OpenStreetMap data, drawn with [MapLibre GL JS](https://maplibre.org/).
 - Boyer, W. D. (1973). Air temperature, heat sums, and pollen shedding phenology of longleaf pine. *Ecology*, 54(2), 420–426. [https://doi.org/10.2307/1934351](https://doi.org/10.2307/1934351)
 - Lindsey, A. A., & Newman, J. E. (1956). Use of official weather data in spring time-temperature analysis of an Indiana phenological record. *Ecology*, 37(4), 812–823.
 
-<p class="page-note">Drafted by Claude Sonnet 5 (Anthropic) from the project’s code and results, and reviewed and verified by the author.</p>
+<p class="page-note">Methodology section drafted by Claude Sonnet 5 (Anthropic) from the project’s code and results, and reviewed and verified by the author.</p>

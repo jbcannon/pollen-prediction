@@ -113,23 +113,30 @@ def run(browser, url: str, name: str, **ctx_args) -> list[str]:
     return problems
 
 
-def check_methods(browser, url: str) -> list[str]:
-    """The methods page: it loads, every image is drawn, and it does not need the map's scripts."""
+def check_methodology(browser, url: str) -> list[str]:
+    """The collapsed methodology section on the front page: closed at first, opens, its images draw, and a link into it opens it."""
     problems: list[str] = []
     page = browser.new_page(viewport={"width": 1280, "height": 900})
     errors: list[str] = []
     page.on("pageerror", lambda e: errors.append(str(e)))
-    page.goto(url + "methods.html", wait_until="networkidle")
-    broken = page.evaluate("[...document.images].filter(i => !i.complete || i.naturalWidth === 0).map(i => i.src)")
-    n = page.evaluate("document.querySelectorAll('main img').length")
-    print(f"[methods] {n} images, {len(broken)} broken, {len(errors)} script errors")
-    if broken:
-        problems.append(f"methods page images did not load: {broken}")
+    page.goto(url, wait_until="networkidle")
+    box = page.locator("details.method")
+    if box.count() != 1 or box.evaluate("e => e.open"):
+        problems.append("the methodology section is missing, or is open before anyone asked for it")
+    page.locator("details.method > summary").click()
+    page.evaluate("document.querySelectorAll('details.method img').forEach(i => i.loading = 'eager')")
+    page.wait_for_timeout(1500)
+    broken = page.evaluate("[...document.querySelectorAll('details.method img')].filter(i => !i.complete || i.naturalWidth === 0).map(i => i.src)")
+    n = page.evaluate("document.querySelectorAll('details.method img').length")
+    print(f"[methodology] {n} images, {len(broken)} broken, {len(errors)} script errors")
+    if broken or n < 4:
+        problems.append(f"methodology images did not load: {broken} ({n} found)")
     if errors:
-        problems.append(f"methods page script errors: {errors}")
-    if page.locator("main a[href='index.html']").count() == 0:
-        problems.append("methods page has no link back to the map")
-    page.screenshot(path=OUT / "methods-fullpage.png", full_page=True)
+        problems.append(f"methodology script errors: {errors}")
+    page.locator("details.method > summary").click()   # close it again, then follow a link into it
+    page.goto(url + "#from-temperatures-to-heat", wait_until="networkidle")
+    if not page.locator("details.method").evaluate("e => e.open"):
+        problems.append("a link into the methodology did not open it")
     page.close()
     return problems
 
@@ -182,7 +189,7 @@ def main() -> int:
         problems += run(browser, url, "desktop", viewport={"width": 1280, "height": 900})
         problems += run(browser, url, "mobile", viewport={"width": 390, "height": 844}, is_mobile=True, has_touch=True,
                         device_scale_factor=2)
-        problems += check_methods(browser, url)
+        problems += check_methodology(browser, url)
         problems += check_gallery(browser, url)
         browser.close()
     server.shutdown()

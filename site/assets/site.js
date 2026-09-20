@@ -13,3 +13,16 @@
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") set(false); });
   document.addEventListener("click", (e) => { if (!header.contains(e.target)) set(false); });
 })();
+
+/* A link to something inside a collapsed section (for example #from-temperatures-to-heat) opens the section first. */
+(() => {
+  "use strict";
+  const openFor = () => {
+    const id = decodeURIComponent(location.hash.slice(1));
+    const target = id && document.getElementById(id);
+    const box = target && target.closest("details");
+    if (box && !box.open) { box.open = true; target.scrollIntoView(); }
+  };
+  window.addEventListener("hashchange", openFor);
+  openFor();
+})();

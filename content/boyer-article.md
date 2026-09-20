@@ -43,7 +43,7 @@ Boyer knew that many biological processes depend on environmental conditions, so
 
 Boyer found that for longleaf pine, catkin development advanced only when temperatures climbed above 50 °F. For each hour that temperatures were above 50 °F, the development of the catkins would slowly advance, ratcheting them closer and closer to maturity.
 
-Boyer used a measure called a *heat sum* to predict the exact day the catkins would mature and release pollen. For every hour the air temperature stayed above 50 °F, Boyer would add up the number of *degree-hours* over 50 °F. For example, if temperatures were 60 °F for 1 hour (50 °F + 10 °F), then the total heat sum would increase by 10 degree-hours. If the temperature averaged 70 °F over the next hour (50 °F + 20 °F), the heat sum would increase by another 20 degree-hours. (Boyer worked from hourly temperature readings; the map estimates the same thing from each day’s high and low, as described in [the methodology page](methods.html#from-temperatures-to-heat).) In the chart for any station (hover over or click a dot on the map above), the red line tracks the slow accumulation of the heat sum for this year. As the year progresses, the actual heat sum requirement steadily decreases (blue line). By the time the accumulated heat sum exceeds the required threshold, longleaf pine catkins have reached maturity and the pollen is ready to shed.
+Boyer used a measure called a *heat sum* to predict the exact day the catkins would mature and release pollen. For every hour the air temperature stayed above 50 °F, Boyer would add up the number of *degree-hours* over 50 °F. For example, if temperatures were 60 °F for 1 hour (50 °F + 10 °F), then the total heat sum would increase by 10 degree-hours. If the temperature averaged 70 °F over the next hour (50 °F + 20 °F), the heat sum would increase by another 20 degree-hours. (Boyer worked from hourly temperature readings; the map estimates the same thing from each day’s high and low, as described in [the methodology section](#from-temperatures-to-heat).) In the chart for any station (hover over or click a dot on the map above), the red line tracks the slow accumulation of the heat sum for this year. As the year progresses, the actual heat sum requirement steadily decreases (blue line). By the time the accumulated heat sum exceeds the required threshold, longleaf pine catkins have reached maturity and the pollen is ready to shed.
 
 ![Scatter plot of the recorded day of peak pollen shed against the expected day, both from about day 50 to day 120. The points fall almost exactly on a straight 1:1 line. Filled circles (data in the original analysis, r² = 0.998) and open squares (data not in the original analysis, r² = 0.968), including sites labeled N. Ala. and N.C., sit close to the line.](img/pollen-shed-prediction.jpg)
 
@@ -62,7 +62,7 @@ Boyer’s foresight and long-term view of research went beyond pine reproduction
 
 ## Methodology
 
-In the last ten days before the peak, about nine in ten forecasts land within three days of Boyer’s crossover date; a month or more ahead, the typical miss is about four days. The [methodology page](methods.html) covers the data, the math, the map, and the replays of past springs behind those numbers.
+<!-- METHODOLOGY -->
 
 ## References
 

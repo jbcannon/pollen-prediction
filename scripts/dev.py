@@ -2,7 +2,7 @@
 
     uv run python scripts/dev.py
 
-Then edit content/boyer-article.md, content/methods.md, site/template.html, site/map-block.html or anything in site/assets/,
+Then edit content/boyer-article.md, content/methodology.md, site/template.html, site/map-block.html or anything in site/assets/,
 save, and the browser refreshes within a second. Stop with Ctrl+C.
 
 Why a server at all: browsers will not let a page opened by double-clicking (file://) read the data
@@ -30,7 +30,7 @@ SITE = ROOT / "site"
 sys.path.insert(0, str(ROOT / "scripts"))
 import build_site
 
-REBUILD = [ROOT / "content" / "boyer-article.md", ROOT / "content" / "methods.md", SITE / "template.html", SITE / "map-block.html"]
+REBUILD = [ROOT / "content" / "boyer-article.md", ROOT / "content" / "methodology.md", SITE / "template.html", SITE / "map-block.html"]
 RELOAD_DIRS = [SITE / "assets", SITE / "data", SITE / "img"]
 VERSION = [str(time.time())]  # changes whenever something the browser should reload changes
 

@@ -23,7 +23,7 @@ html { scroll-padding-top:88px; }   /* anchors (references, #YYYY) land below th
 .site-header nav a:hover, .site-header nav a:focus-visible { border-bottom-color:#fff; }
 
 main { max-width:1000px; margin:0 auto; padding:26px 20px 60px; }
-main > :not(#map-block):not(.wide) { max-width:780px; margin-left:auto; margin-right:auto; }
+main > :not(#map-block):not(.wide):not(.side) { max-width:780px; margin-left:auto; margin-right:auto; }
 main > :not(#map-block).title, main > :not(#map-block).byline, main > :not(#map-block).deck, main > :not(#map-block).author { max-width:none; }   /* line up with the map */
 h1.title { font:700 34px/1.15 "Nunito Sans",sans-serif; margin:0 auto 4px; color:var(--text); }
 .author { display:flex; align-items:center; gap:12px; margin:0 0 12px; }
@@ -44,6 +44,13 @@ main a { text-decoration:underline; }
 sup a { text-decoration:none; }
 p:has(> img) { text-align:center; margin:24px 0 6px; }
 main img { max-width:100%; height:auto; }
+/* the article's own photos and figures sit to the right of the text at a modest size, and stack on a phone; the methodology's charts stay full width */
+figure.side { float:right; clear:right; width:340px; margin:4px max(0px, calc((100% - 780px) / 2)) 14px 26px; }
+figure.side a { display:block; line-height:0; text-decoration:none; cursor:zoom-in; }
+figure.side img { display:block; width:100%; height:auto; border-radius:4px; }
+figure.side figcaption.caption { margin:7px 0 0; font-size:13.5px; line-height:1.35; font-style:italic; color:#333; }
+figure.side figcaption.caption a { display:inline; font-style:italic; text-decoration:underline; cursor:pointer; line-height:inherit; }
+main h2 { clear:both; }
 p.caption { font-size:16px; font-style:italic; line-height:1.4; color:#333; margin-bottom:26px; }
 p.caption a { font-style:italic; }
 blockquote { margin:14px auto 34px; padding:18px 24px 6px; background:#f2f8ef; border-left:5px solid var(--primary);
@@ -136,6 +143,16 @@ ol li { margin-bottom:9px; }
   .site-header nav a { font-size:15px; margin:0 6px; }
 }
 
+details.method { margin:6px 0 0; }
+details.method > summary { display:inline-block; list-style:none; cursor:pointer; padding:10px 20px; border-radius:999px; background:var(--header); color:#fff;
+  font:700 15.5px "Nunito Sans",sans-serif; }
+details.method > summary::-webkit-details-marker { display:none; }
+details.method > summary:hover, details.method > summary:focus-visible { background:#2f6a1c; }
+details.method .when-open, details.method[open] .when-closed { display:none; }
+details.method[open] .when-open { display:inline; }
+details.method[open] > summary { margin-bottom:8px; }
+details.method .method-body { margin-top:6px; padding-top:4px; border-top:1px solid #e1e0d9; }
+details.method .method-body h3 { margin-top:34px; }
 p.page-note { margin-top:38px; font-size:14px; line-height:1.45; color:#6b6b66; }
 
 /* ---- the map ---- */
@@ -239,6 +256,7 @@ p.page-note { margin-top:38px; font-size:14px; line-height:1.45; color:#6b6b66; 
   .js .site-header.open nav { display:flex; }
   .site-header nav a { margin:0; padding:12px 18px; font-size:16px; border-bottom:1px solid rgba(255,255,255,.16); }
   .site-header nav a:hover, .site-header nav a:focus-visible { background:rgba(255,255,255,.12); }
+  figure.side { float:none; clear:none; width:100%; max-width:420px; margin:18px auto; }
   h1.title { font-size:27px; }
   main p.deck { font-size:18px; line-height:1.35; }
   /* on a phone the map comes first; the live summary sits underneath it */

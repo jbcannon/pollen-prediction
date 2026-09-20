@@ -25,8 +25,8 @@ The page is a static site (`site/`) rebuilt every morning by a GitHub Action and
 
 | Path | What |
 |---|---|
-| `site/` | The web pages (`index.html`, `methods.html`, `gallery.html`), the finished seasons (`seasons/`, `gallery/thumbs/`), the map (`assets/map.js`), "find my location" and click-to-read (`assets/locate.js`), styles, images. `site/data/` is built daily and not committed. |
-| `content/` | The article text (`boyer-article.md`, `methods.md`) and its images. `scripts/build_site.py` turns them into the pages in `site/`. |
+| `site/` | The web pages (`index.html`, `gallery.html`), the finished seasons (`seasons/`, `gallery/thumbs/`), the map (`assets/map.js`), "find my location" and click-to-read (`assets/locate.js`), styles, images. `site/data/` is built daily and not committed. |
+| `content/` | The article text (`boyer-article.md`, and `methodology.md`, the collapsed section) and its images. `scripts/build_site.py` turns them into the pages in `site/`. |
 | `src/pollen/` | The model: heat sums, the Boyer threshold, the forecast, IEM data access, the map surface, and the daily run (`live.py`) |
 | `scripts/` | `run_daily.py` (the daily job), `build_gallery.py` (finished seasons and thumbnails), `dev.py` (live preview; `preview.bat` on Windows), `build_site.py`, `build_history.py` (yearly), `check_site.py` (browser test) |
 | `data/history/` | Daily temperatures for 2001 onward at the 272 stations, and the station list |

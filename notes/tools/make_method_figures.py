@@ -1,4 +1,4 @@
-"""Draw the four figures for the methods page (content/methods.md) into content/img/.
+"""Draw the four figures for the methods page (content/methodology.md) into content/img/.
 
 Example (from the repo root; matplotlib is not a project dependency):
   uv run --with matplotlib python notes/tools/make_method_figures.py
