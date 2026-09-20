@@ -19,7 +19,7 @@
 
 **Each spring I battle with allergies.** It starts with itchy, watery eyes, progresses into a runny nose, and culminates in wall-shaking sneezes. I realize we are in the midst of allergy season when I find that my metallic blue SUV has been dusted with a powdery-yellow film of pine pollen. Pine pollen is a weak allergen for most people (the grains are large and low in protein), so I can’t blame it for my sneezing, although a few people do react to it<sup>[1](#ref-1)</sup>. But I can blame the pines for sullying my car—usually only a day or two after giving it a wash.
 
-Watching pine trees shed their pollen is fascinating. Once a tree canopy is filled with ripened catkins, even a slight breeze can trigger the pollen to release. As the branches gently jostle, a yellow cloud billows forth, rolling slowly from the needles before the yellow haze disappears into the wind. Whole stands of pine may erupt their pollen during the same gust of wind.
+Watching pine trees shed their pollen is fascinating. Once a tree canopy is filled with ripened catkins (the pollen-producing structures), even a slight breeze can trigger the pollen to release. As the branches gently jostle, a yellow cloud billows forth, rolling slowly from the needles before the yellow haze disappears into the wind. Whole stands of pine may erupt their pollen during the same gust of wind.
 
 Although allergy season surprises me each year, the timing of pollen shedding in pines is remarkably predictable. In 1973, USDA Forest Service scientist, Bill Boyer, discovered a way to successfully predict peak pine pollen shedding within just a day or two using only air temperature records and some Scotch® tape.
 
