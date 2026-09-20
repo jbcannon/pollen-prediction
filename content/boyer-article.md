@@ -19,6 +19,8 @@
 
 **Each spring I battle with allergies.** It starts with itchy, watery eyes, progresses into a runny nose, and culminates in wall-shaking sneezes. I realize we are in the midst of allergy season when I find that my metallic blue SUV has been dusted with a powdery-yellow film of pine pollen. Pine pollen is a weak allergen for most people (the grains are large and low in protein), so I can’t blame it for my sneezing, although a few people do react to it<sup>[1](#ref-1)</sup>. But I can blame the pines for sullying my car—usually only a day or two after giving it a wash.
 
+Watching pine trees shed their pollen is fascinating. Once a tree canopy is filled with ripened catkins, even a slight breeze can trigger the pollen to release. As the branches gently jostle, a yellow cloud billows forth, rolling slowly from the needles before the yellow haze disappears into the wind. Whole stands of pine may erupt their pollen during the same gust of wind.
+
 Although allergy season surprises me each year, the timing of pollen shedding in pines is remarkably predictable. In 1973, USDA Forest Service scientist, Bill Boyer, discovered a way to successfully predict peak pine pollen shedding within just a day or two using only air temperature records and some Scotch® tape.
 
 Boyer worked for the USDA Forest Service – [Southern Research Station](https://www.fs.usda.gov/research/srs) in rural Brewton, Alabama. For decades, he conducted painstaking work to study the reproductive patterns of longleaf pine. He was interested in the longleaf pine ecosystem because it once stretched over 90 million acres in the southeastern U.S., but due to unsustainable logging and land use changes throughout the 19<sup>th</sup> and 20<sup>th</sup> centuries, the ecosystem was reduced to [only 5% of its historic range](https://books.google.com/books?id=-MN5MO16ECYC)<sup>[2](#ref-2)</sup>. Boyer wanted to learn more about reproduction in longleaf pine to help conservationists understand how to reestablish and manage the species, and eventually help it recover.
@@ -44,8 +46,6 @@ Boyer used a measure called a *heat sum* to predict the exact day the catkins wo
 ![Scatter plot of the recorded day of peak pollen shed against the expected day, both from about day 50 to day 120. The points fall almost exactly on a straight 1:1 line. Filled circles (data in the original analysis, r² = 0.998) and open squares (data not in the original analysis, r² = 0.968), including sites labeled N. Ala. and N.C., sit close to the line.](img/pollen-shed-prediction.jpg)
 
 *Figure 3. Data from Boyer’s [original 1973 article](https://doi.org/10.2307/1934351) shows a close match between when the day of the year he expected peak pollen shed, and the actual day of the year it occurred. [Boyer (1973) Ecology 54 (2) 420-426.](https://doi.org/10.2307/1934351)*
-
-Watching pine trees shed their pollen is fascinating. Once a tree canopy is filled with ripened catkins, even a slight breeze can trigger the pollen to release. As the branches gently jostle, a yellow cloud billows forth, rolling slowly from the needles before the yellow haze disappears into the wind. Whole stands of pine may erupt their pollen during the same gust of wind.
 
 Without clocks and calendars, many plants rely on environmental cues for reproductive events. Successful reproduction is more likely when pollen release happens while female cones are most receptive. So, it should not be surprising that pollen release is so well-timed to weather events.
 
