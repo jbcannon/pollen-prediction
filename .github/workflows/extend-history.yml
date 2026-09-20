@@ -13,7 +13,7 @@ name: Add the finished season to the history and the gallery
 # scripts/build_history.py refuses to write anything if the new season is under 95% complete or old readings
 # went missing, so a bad download changes nothing (the run fails and GitHub emails whoever last edited this file).
 # The station list is not changed here: stations that newly qualify, or have stopped reporting, are a yearly
-# re-survey done by hand (see notes/todolist.md).
+# re-survey done by hand once a year (notes/research/stations/survey.py).
 #
 # Run it by hand from the Actions tab to redo it (it changes nothing if there is nothing new).
 on:
