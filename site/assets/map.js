@@ -8,7 +8,7 @@
   const STYLE_URL = "https://tiles.openfreemap.org/styles/positron";
   // early -> late: yellow, green, teal, blue, indigo, purple (lightness falls steadily)
   const RAMP = ["#f4e04d", "#b6d957", "#5fc16f", "#23a5a0", "#2a78d6", "#4b4ba8", "#3a1c63"];
-  const RED = "#d62728", BLUE = "#1f77b4", GREEN = "#2ca02c", INK = "#0b0b0b", GOLD = "#e8a317";
+  const RED = "#d62728", BLUE = "#1f77b4", GREEN = "#62A744", INK = "#0b0b0b", GOLD = "#e8a317";
   const DAY_MS = 864e5;
   const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May"];
 

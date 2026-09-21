@@ -130,7 +130,7 @@ def draw_map(good: pd.DataFrame, rings):
             r = np.array(poly[0])
             ax.fill(r[:, 0], r[:, 1], color="#f0efec", ec=AXIS, lw=0.6, zorder=1)
     for r in rings:
-        ax.fill(r[:, 0], r[:, 1], color="#2ca02c", alpha=0.22, ec="#3d7a3d", lw=0.8, zorder=2)
+        ax.fill(r[:, 0], r[:, 1], color="#62A744", alpha=0.22, ec="#3d7a26", lw=0.8, zorder=2)
     for label, lo, hi, color, size in HISTORY_BINS:
         sub = good[good.complete_seasons.between(lo, hi)]
         ax.scatter(sub.lon, sub.lat, s=size, c=color, edgecolors=SURFACE, linewidths=0.9,
